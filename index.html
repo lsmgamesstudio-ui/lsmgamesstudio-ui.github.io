@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23112540'/%3E%3Ctext x='16' y='23' text-anchor='middle' fill='white' font-family='sans-serif' font-size='22' font-weight='700'%3EL%3C/text%3E%3C/svg%3E">
+<title>LSM Games Studio</title>
+<meta name="description" content="Juegos de LSM Games Studio. Games by LSM Games Studio.">
+<style>
+  :root{
+    --ground:#f5f7fa; --ink:#172638; --heading:#112540; --brand:#183f69; --muted:#526174;
+    --link:#145a9e; --accent:#2267ad; --rule:#d2dbe6; --panel:#e9eef5;
+    color-scheme:light;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ground:#0f1824; --ink:#dbe4ee; --heading:#f0f4f9; --brand:#9ec4ea; --muted:#94a4b7;
+      --link:#8fc0f2; --accent:#4f93d8; --rule:#2a394b; --panel:#162334;
+      color-scheme:dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#0f1824; --ink:#dbe4ee; --heading:#f0f4f9; --brand:#9ec4ea; --muted:#94a4b7;
+    --link:#8fc0f2; --accent:#4f93d8; --rule:#2a394b; --panel:#162334;
+    color-scheme:dark;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ground);color:var(--ink);border-top:6px solid var(--accent);
+    font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:16px;line-height:1.75}
+  .page{max-width:800px;margin-inline:auto;padding-inline:28px}
+  header{padding-block:44px 32px;border-bottom:1px solid var(--rule)}
+  .brand{font-weight:750;letter-spacing:.025em;font-size:1rem;color:var(--brand)}
+  h1{font-size:clamp(2rem,6vw,3.1rem);line-height:1.15;letter-spacing:-.035em;margin:32px 0 12px;color:var(--heading);text-wrap:balance}
+  .lead{margin:0;color:var(--muted)}
+  main{padding-block:28px}
+  ul{list-style:none;margin:0;padding:0}
+  li{background:var(--panel);border-radius:10px;padding:18px 22px;margin:0 0 12px}
+  .name{display:block;font-size:1.2rem;font-weight:650;color:var(--heading)}
+  .links{display:flex;flex-wrap:wrap;gap:4px 18px}
+  a{color:var(--link);text-underline-offset:3px;overflow-wrap:anywhere}
+  a:focus-visible{outline:3px solid var(--accent);outline-offset:4px;border-radius:2px}
+  footer{border-top:1px solid var(--rule);padding-block:24px 36px;color:var(--muted);font-size:.9rem}
+  @media (max-width:480px){.page{padding-inline:20px}header{padding-top:28px}}
+</style>
+</head>
+<body>
+<div class="page">
+<header>
+  <div class="brand">LSM GAMES STUDIO</div>
+  <h1>Nuestros juegos</h1>
+  <p class="lead">Juegos para móvil · <span lang="en">Mobile games</span></p>
+</header>
+<main>
+  <ul>
+    <li>
+      <span class="name">Mini City</span>
+      <span class="links">
+        <a href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.minicity">Google Play</a>
+        <a href="minicity/">Política de privacidad</a>
+        <a href="minicity/#en" lang="en">Privacy policy</a>
+      </span>
+    </li>
+  </ul>
+</main>
+<footer>LSM Games Studio · <a href="mailto:lsmgamesstudio@gmail.com">lsmgamesstudio@gmail.com</a> · <a href="https://x.com/LSMGamesStudio">X</a></footer>
+</div>
+</body>
+</html>
