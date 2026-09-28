@@ -43,6 +43,17 @@
   .links{display:flex;flex-wrap:wrap;gap:4px 18px}
   a{color:var(--link);text-underline-offset:3px;overflow-wrap:anywhere}
   a:focus-visible{outline:3px solid var(--accent);outline-offset:4px;border-radius:2px}
+  .tabs{display:flex;gap:4px;margin:0 0 20px;border-bottom:1px solid var(--rule)}
+  .tabs button{appearance:none;background:none;border:0;border-bottom:3px solid transparent;margin-bottom:-1px;padding:10px 16px;
+    font:inherit;font-weight:650;color:var(--muted);cursor:pointer;display:flex;align-items:center;gap:8px}
+  .tabs button:hover{color:var(--heading)}
+  .tabs button[aria-selected="true"]{color:var(--heading);border-bottom-color:var(--accent)}
+  .tabs button:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+  .tabs .sub{font-weight:500}
+  .tabs .count{font-size:.78rem;font-weight:650;line-height:1;padding:4px 8px;border-radius:999px;background:var(--panel);color:var(--muted)}
+  .tabs button[aria-selected="true"] .count{background:var(--accent);color:#fff}
+  [role="tabpanel"][hidden]{display:none}
+  .tabs[hidden]{display:none}
   footer{border-top:1px solid var(--rule);padding-block:24px 36px;color:var(--muted);font-size:.9rem}
   @media (max-width:480px){.page{padding-inline:20px}header{padding-top:28px}}
 </style>
@@ -55,6 +66,11 @@
   <p class="lead">Juegos para Android y PC · <span lang="en">Games for Android and PC</span></p>
 </header>
 <main>
+  <div class="tabs" role="tablist" hidden aria-label="Plataforma · Platform">
+    <button type="button" role="tab" id="tab-android" aria-controls="panel-android" aria-selected="true">Android<span class="count">5</span></button>
+    <button type="button" role="tab" id="tab-steam" aria-controls="panel-steam" aria-selected="false" tabindex="-1">Steam <span class="sub">(PC)</span><span class="count">1</span></button>
+  </div>
+  <section id="panel-android" role="tabpanel" aria-labelledby="tab-android">
   <ul>
     <li>
       <img src="iconos/minicity.png" alt="" width="72" height="72">
@@ -111,6 +127,10 @@
       </span>
       </div>
     </li>
+  </ul>
+  </section>
+  <section id="panel-steam" role="tabpanel" aria-labelledby="tab-steam">
+  <ul>
     <li>
       <img src="iconos/timberland.png" alt="" width="72" height="72">
       <div>
@@ -121,8 +141,35 @@
       </div>
     </li>
   </ul>
+  </section>
 </main>
 <footer>LSM Games Studio · Legendary Strategy Makers · <a href="mailto:lsmgamesstudio@gmail.com">lsmgamesstudio@gmail.com</a> · <a href="https://x.com/LSMGamesStudio">X</a></footer>
 </div>
+<script>
+  // Pestañas Android / Steam: se abre la de la dirección (#steam) o la de Android; con las flechas se pasa de una a otra
+  (function(){
+    document.querySelector('.tabs').hidden=false;
+    var tabs=[].slice.call(document.querySelectorAll('[role="tab"]'));
+    function elegir(tab,foco){
+      tabs.forEach(function(t){
+        var si=t===tab;
+        t.setAttribute('aria-selected',si?'true':'false');
+        t.tabIndex=si?0:-1;
+        document.getElementById(t.getAttribute('aria-controls')).hidden=!si;
+      });
+      if(foco)tab.focus();
+    }
+    tabs.forEach(function(t,i){
+      t.addEventListener('click',function(){elegir(t);history.replaceState(null,'',t.id==='tab-steam'?'#steam':'#android');});
+      t.addEventListener('keydown',function(e){
+        var n=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0;
+        if(!n)return;
+        e.preventDefault();
+        elegir(tabs[(i+n+tabs.length)%tabs.length],true);
+      });
+    });
+    elegir(document.getElementById(location.hash==='#steam'?'tab-steam':'tab-android'));
+  })();
+</script>
 </body>
 </html>
