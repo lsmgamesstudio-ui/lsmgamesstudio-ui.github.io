@@ -1,175 +1,509 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" data-idioma="es">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LSM Games Studio · Juegos de estrategia y gestión</title>
+<meta name="description" content="LSM Games Studio (Legendary Strategy Makers): juegos de estrategia y gestión para PC y Android. Timberland llega a Steam en acceso anticipado en noviembre de 2026.">
+<meta name="theme-color" content="#0a1019">
 <link rel="icon" type="image/svg+xml" href="logo.svg">
 <link rel="apple-touch-icon" href="logo_180.png">
-<title>LSM Games Studio</title>
-<meta name="description" content="Juegos de LSM Games Studio (Legendary Strategy Makers). Games by LSM Games Studio.">
+<link rel="canonical" href="https://lsmgamesstudio-ui.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="LSM Games Studio">
+<meta property="og:title" content="LSM Games Studio · Legendary Strategy Makers">
+<meta property="og:description" content="Juegos de estrategia y gestión para PC y Android. Timberland, en Steam en noviembre de 2026.">
+<meta property="og:url" content="https://lsmgamesstudio-ui.github.io/">
+<meta property="og:image" content="https://lsmgamesstudio-ui.github.io/img/compartir.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@LSMGamesStudio">
+<link rel="preload" href="fuentes/SairaCondensed-ExtraBold.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="img/timberland/hero.webp" as="image" media="(min-width: 901px)">
+<link rel="preload" href="img/timberland/hero-movil.webp" as="image" media="(max-width: 900px)">
 <style>
+  @font-face{font-family:"Saira Condensed";src:url("fuentes/SairaCondensed-ExtraBold.ttf") format("truetype");font-weight:800;font-display:swap}
+  @font-face{font-family:"Saira Condensed";src:url("fuentes/SairaCondensed-SemiBold.ttf") format("truetype");font-weight:600;font-display:swap}
+
   :root{
-    --ground:#f5f7fa; --ink:#172638; --heading:#112540; --brand:#183f69; --muted:#526174;
-    --link:#145a9e; --accent:#2267ad; --rule:#d2dbe6; --panel:#e9eef5;
-    color-scheme:light;
-  }
-  @media (prefers-color-scheme: dark){
-    :root:not([data-theme="light"]){
-      --ground:#0f1824; --ink:#dbe4ee; --heading:#f0f4f9; --brand:#9ec4ea; --muted:#94a4b7;
-      --link:#8fc0f2; --accent:#4f93d8; --rule:#2a394b; --panel:#162334;
-      color-scheme:dark;
-    }
-  }
-  :root[data-theme="dark"]{
-    --ground:#0f1824; --ink:#dbe4ee; --heading:#f0f4f9; --brand:#9ec4ea; --muted:#94a4b7;
-    --link:#8fc0f2; --accent:#4f93d8; --rule:#2a394b; --panel:#162334;
+    --fondo:#0a1019; --fondo-2:#0e1622; --panel:#131d2c; --panel-2:#1a2638;
+    --linea:rgba(255,255,255,.09); --linea-2:rgba(255,255,255,.16);
+    --tinta:#e8eef5; --suave:#a3b2c4; --tenue:#73849a;
+    --azul:#5b9ad6; --azul-2:#2c74bd; --oro:#f2b84b; --oro-2:#de952a; --oro-tinta:#1f1405;
+    --verde:#5fd08f;
+    --titulos:"Saira Condensed","Arial Narrow",system-ui,sans-serif;
+    --texto:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    --ancho:1180px; --margen:clamp(16px,4vw,32px); --radio:12px;
     color-scheme:dark;
   }
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--ground);color:var(--ink);border-top:6px solid var(--accent);
-    font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:16px;line-height:1.75}
-  .page{max-width:800px;margin-inline:auto;padding-inline:28px}
-  header{padding-block:44px 32px;border-bottom:1px solid var(--rule)}
-  .brand{display:flex;align-items:center;gap:12px;font-weight:750;letter-spacing:.02em;font-size:1.2rem;color:var(--brand)}
-  .brand img{width:52px;height:52px}
-  .brand small{display:block;font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);line-height:1.4}
-  h1{font-size:clamp(2rem,6vw,3.1rem);line-height:1.15;letter-spacing:-.035em;margin:32px 0 12px;color:var(--heading);text-wrap:balance}
-  .lead{margin:0;color:var(--muted)}
-  main{padding-block:28px}
-  ul{list-style:none;margin:0;padding:0}
-  li{background:var(--panel);border-radius:10px;padding:16px 20px;margin:0 0 12px;display:flex;align-items:center;gap:18px}
-  li img{width:72px;height:72px;border-radius:16px;flex:none}
-  .name{display:block;font-size:1.2rem;font-weight:650;color:var(--heading)}
-  .links{display:flex;flex-wrap:wrap;gap:4px 18px}
-  a{color:var(--link);text-underline-offset:3px;overflow-wrap:anywhere}
-  a:focus-visible{outline:3px solid var(--accent);outline-offset:4px;border-radius:2px}
-  .tabs{display:flex;gap:4px;margin:0 0 20px;border-bottom:1px solid var(--rule)}
-  .tabs button{appearance:none;background:none;border:0;border-bottom:3px solid transparent;margin-bottom:-1px;padding:10px 16px;
-    font:inherit;font-weight:650;color:var(--muted);cursor:pointer;display:flex;align-items:center;gap:8px}
-  .tabs button:hover{color:var(--heading)}
-  .tabs button[aria-selected="true"]{color:var(--heading);border-bottom-color:var(--accent)}
-  .tabs button:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
-  .tabs .sub{font-weight:500}
-  .tabs .count{font-size:.78rem;font-weight:650;line-height:1;padding:4px 8px;border-radius:999px;background:var(--panel);color:var(--muted)}
-  .tabs button[aria-selected="true"] .count{background:var(--accent);color:#fff}
-  [role="tabpanel"][hidden]{display:none}
-  .tabs[hidden]{display:none}
-  footer{border-top:1px solid var(--rule);padding-block:24px 36px;color:var(--muted);font-size:.9rem}
-  @media (max-width:480px){.page{padding-inline:20px}header{padding-top:28px}}
+  *,*::before,*::after{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{margin:0;background:var(--fondo);color:var(--tinta);font:400 1.0625rem/1.65 var(--texto);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  img{display:block;max-width:100%;height:auto}
+  a{color:inherit}
+  [id]{scroll-margin-top:84px}
+  :focus-visible{outline:3px solid var(--oro);outline-offset:3px;border-radius:6px}
+  .oculto{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+  html[data-idioma="es"] .en,html[data-idioma="en"] .es{display:none !important}
+  .caja{max-width:var(--ancho);margin-inline:auto;padding-inline:var(--margen)}
+
+  /* Barra de arriba */
+  .barra{position:fixed;inset:0 0 auto;z-index:20;transition:background-color .3s,border-color .3s,backdrop-filter .3s;border-bottom:1px solid transparent}
+  .barra.solida{background:rgba(10,16,25,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom-color:var(--linea)}
+  .barra .caja{display:flex;align-items:center;gap:24px;height:68px}
+  .marca{display:flex;align-items:center;gap:10px;text-decoration:none;font:800 1.3rem/1 var(--titulos);letter-spacing:.02em;white-space:nowrap}
+  .marca img{width:34px;height:34px}
+  .menu{display:flex;gap:4px;margin-left:auto}
+  .menu a{font:600 1rem/1 var(--titulos);letter-spacing:.1em;text-transform:uppercase;text-decoration:none;color:var(--suave);padding:10px 12px;border-radius:6px;transition:color .2s}
+  .menu a:hover{color:#fff}
+  .idiomas{display:flex;border:1px solid var(--linea-2);border-radius:999px;padding:3px;background:rgba(10,16,25,.4)}
+  .idiomas button{appearance:none;border:0;background:none;color:var(--suave);font:600 .85rem/1 var(--titulos);letter-spacing:.08em;padding:6px 10px;border-radius:999px;cursor:pointer}
+  .idiomas button[aria-pressed="true"]{background:var(--tinta);color:var(--fondo)}
+  @media (max-width:760px){.menu{display:none}.idiomas{margin-left:auto}}
+
+  /* Portada: Timberland */
+  .portada{position:relative;min-height:min(76vh,700px);display:flex;align-items:flex-end;isolation:isolate;overflow:hidden}
+  .portada picture,.portada .fondo{position:absolute;inset:0;z-index:-2}
+  .portada .fondo{width:100%;height:100%;object-fit:cover;object-position:50% 45%}
+  .portada::before{content:"";position:absolute;inset:0;z-index:-1;
+    background:linear-gradient(to top,var(--fondo) 0%,rgba(10,16,25,.88) 20%,rgba(10,16,25,.35) 52%,rgba(10,16,25,.15) 72%,rgba(10,16,25,.6) 100%),
+               linear-gradient(90deg,rgba(10,16,25,.7) 0%,rgba(10,16,25,.25) 45%,transparent 70%)}
+  .portada .caja{width:100%;padding-top:110px;padding-bottom:clamp(36px,6vh,60px)}
+  .chapa{display:inline-flex;align-items:center;gap:8px;font:600 .9rem/1 var(--titulos);letter-spacing:.14em;text-transform:uppercase;color:#fff;
+    padding:8px 14px;border-radius:999px;background:rgba(10,16,25,.55);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+  .chapa .punto{width:8px;height:8px;border-radius:50%;background:var(--oro);box-shadow:0 0 0 4px rgba(242,184,75,.22)}
+  .portada h2{margin:18px 0 0}
+  .portada h2 img{width:clamp(250px,38vw,500px);filter:drop-shadow(0 10px 28px rgba(0,0,0,.55))}
+  .portada .entradilla{max-width:600px;margin:14px 0 0;font-size:clamp(1.05rem,1.6vw,1.25rem);line-height:1.6;color:#eef3f8;text-shadow:0 1px 12px rgba(0,0,0,.6)}
+  .acciones{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+  .portada .datos{margin:20px 0 0;color:var(--suave);font:600 .95rem/1.4 var(--titulos);letter-spacing:.12em;text-transform:uppercase}
+
+  .boton{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:12px 22px;border-radius:8px;
+    font:600 1.08rem/1 var(--titulos);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border:1px solid transparent;cursor:pointer;
+    transition:transform .2s,box-shadow .2s,background-color .2s,filter .2s}
+  .boton svg{width:20px;height:20px;flex:none}
+  .boton:hover{transform:translateY(-2px)}
+  .boton--oro{background:linear-gradient(180deg,#f8c862,var(--oro-2));color:var(--oro-tinta);box-shadow:0 8px 24px rgba(222,149,42,.28),inset 0 1px 0 rgba(255,255,255,.45)}
+  .boton--oro:hover{filter:brightness(1.06);box-shadow:0 12px 30px rgba(222,149,42,.38),inset 0 1px 0 rgba(255,255,255,.45)}
+  .boton--claro{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.28);color:#fff;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+  .boton--claro:hover{background:rgba(255,255,255,.14)}
+  .boton--azul{background:var(--azul-2);color:#fff}
+  .boton--azul:hover{background:#3584d2}
+  .boton--peq{min-height:40px;padding:9px 16px;font-size:.98rem}
+  .boton--peq svg{width:17px;height:17px}
+
+  /* Secciones */
+  .seccion{padding-block:clamp(72px,10vw,120px)}
+  .seccion--alt{background:var(--fondo-2);border-block:1px solid var(--linea)}
+  .antetitulo{margin:0 0 14px;font:600 .95rem/1 var(--titulos);letter-spacing:.18em;text-transform:uppercase;color:var(--oro)}
+  .titulo{margin:0;font:800 clamp(2.2rem,5vw,3.7rem)/.98 var(--titulos);letter-spacing:.005em;text-transform:uppercase;text-wrap:balance;color:#fff}
+  .intro{max-width:680px;margin:20px 0 0;color:var(--suave);font-size:1.12rem}
+  .cabeza{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px 40px;margin-bottom:clamp(32px,5vw,52px)}
+  .cabeza .intro{margin-top:16px}
+
+  /* Galeria de Timberland */
+  .galeria{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .galeria button{position:relative;display:block;padding:0;border:0;border-radius:10px;overflow:hidden;cursor:zoom-in;background:var(--panel);aspect-ratio:16/9}
+  .galeria img{width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+  .galeria button::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px var(--linea);transition:box-shadow .2s}
+  .galeria button:hover img{transform:scale(1.04)}
+  .galeria button:hover::after{box-shadow:inset 0 0 0 2px var(--oro)}
+  .galeria .pie{position:absolute;left:0;right:0;bottom:0;padding:28px 14px 10px;text-align:left;font:600 .95rem/1.2 var(--titulos);letter-spacing:.06em;text-transform:uppercase;color:#fff;
+    background:linear-gradient(to top,rgba(0,0,0,.7),transparent);opacity:0;transform:translateY(6px);transition:opacity .25s,transform .25s}
+  .galeria button:hover .pie,.galeria button:focus-visible .pie{opacity:1;transform:none}
+  @media (max-width:700px){.galeria{grid-template-columns:1fr 1fr;gap:8px}.galeria .pie{opacity:1;transform:none;font-size:.82rem;padding:20px 10px 8px}}
+
+  .rasgos{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,36px);margin-top:clamp(40px,6vw,64px)}
+  .rasgo{padding-top:22px;border-top:2px solid var(--linea-2)}
+  .rasgo svg{width:30px;height:30px;color:var(--oro)}
+  .rasgo h3{margin:14px 0 8px;font:800 1.55rem/1.1 var(--titulos);color:#fff}
+  .rasgo p{margin:0;color:var(--suave)}
+  @media (max-width:800px){.rasgos{grid-template-columns:1fr}}
+
+  /* Catalogo */
+  .juegos{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:20px}
+  .juego{display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--linea);border-radius:var(--radio);overflow:hidden;
+    transition:transform .3s cubic-bezier(.2,.7,.2,1),border-color .3s,box-shadow .3s}
+  .juego:hover{transform:translateY(-4px);border-color:var(--linea-2);box-shadow:0 18px 40px rgba(0,0,0,.35)}
+  .juego .arte{display:block;aspect-ratio:1024/500;overflow:hidden;background:var(--panel-2)}
+  .juego .arte img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+  .juego:hover .arte img{transform:scale(1.04)}
+  .juego .cuerpo{display:flex;flex-direction:column;flex:1;padding:18px 20px 20px}
+  .etiquetas{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+  .etiqueta{font:600 .78rem/1 var(--titulos);letter-spacing:.12em;text-transform:uppercase;padding:6px 9px;border-radius:5px;background:var(--panel-2);color:var(--suave);border:1px solid var(--linea)}
+  .etiqueta--pc{color:#ffd58a;border-color:rgba(242,184,75,.35);background:rgba(242,184,75,.08)}
+  .etiqueta--android{color:#93e8b6;border-color:rgba(95,208,143,.32);background:rgba(95,208,143,.08)}
+  .etiqueta--nuevo{color:var(--oro-tinta);background:var(--oro);border-color:var(--oro)}
+  .juego h3{margin:0;font:800 1.7rem/1.05 var(--titulos);color:#fff}
+  .juego .genero{margin:4px 0 0;font:600 .9rem/1.3 var(--titulos);letter-spacing:.1em;text-transform:uppercase;color:var(--tenue)}
+  .juego .resumen{margin:12px 0 18px;color:var(--suave);font-size:1rem;line-height:1.55}
+  .juego .pies{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin-top:auto}
+  .juego .pies a:not(.boton){font-size:.92rem;color:var(--tenue);text-underline-offset:3px}
+  .juego .pies a:not(.boton):hover{color:var(--tinta)}
+
+  /* Estudio y contacto */
+  .estudio{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(36px,6vw,80px);align-items:center}
+  .sello{position:relative;display:grid;place-items:center;aspect-ratio:1;max-width:420px;width:100%;margin-inline:auto}
+  .sello::before{content:"";position:absolute;inset:8%;border-radius:50%;background:radial-gradient(closest-side,rgba(91,154,214,.28),rgba(44,116,189,.08) 60%,transparent)}
+  .sello img{position:relative;width:52%;filter:drop-shadow(0 20px 40px rgba(0,0,0,.45))}
+  .sello figcaption{position:absolute;bottom:6%;left:0;right:0;text-align:center;font:600 .9rem/1 var(--titulos);letter-spacing:.32em;text-transform:uppercase;color:var(--tenue)}
+  .estudio p{color:var(--suave);font-size:1.1rem;margin:20px 0 0}
+  .estudio p strong{color:var(--tinta);font-weight:600}
+  @media (max-width:860px){.estudio{grid-template-columns:1fr}.sello{max-width:280px}}
+
+  .contacto{margin-top:40px;padding:28px;border-radius:var(--radio);background:var(--panel);border:1px solid var(--linea)}
+  .contacto h3{margin:0 0 6px;font:800 1.6rem/1.1 var(--titulos);text-transform:uppercase;color:#fff}
+  .contacto p{margin:0 0 20px;font-size:1rem}
+  .contacto .acciones{margin-top:0;align-items:center}
+  .correo{text-transform:none;letter-spacing:.02em;font-family:var(--texto);font-weight:600;font-size:.95rem}
+  .redes{display:flex;flex-wrap:wrap;gap:8px}
+  .redes a{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;border:1px solid var(--linea-2);color:var(--suave);transition:color .2s,border-color .2s,background-color .2s}
+  .redes a:hover{color:#fff;border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.06)}
+  .redes svg{width:19px;height:19px}
+
+  /* Pie */
+  .pie-pagina{border-top:1px solid var(--linea);padding-block:36px 44px;color:var(--tenue);font-size:.92rem}
+  .pie-pagina .caja{display:grid;grid-template-columns:auto 1fr;gap:20px 48px;align-items:start}
+  .pie-pagina .marca{color:var(--tinta);font-size:1.15rem}
+  .pie-pagina .marca img{width:28px;height:28px}
+  .pie-pagina p{margin:10px 0 0}
+  .pie-pagina nav{justify-self:end;display:grid;grid-template-columns:repeat(2,auto);gap:6px 40px}
+  .pie-pagina h4{margin:0 0 4px;font:600 .82rem/1.4 var(--titulos);letter-spacing:.16em;text-transform:uppercase;color:var(--suave)}
+  .pie-pagina ul{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+  .pie-pagina nav a{text-decoration:none;color:var(--tenue)}
+  .pie-pagina nav a:hover{color:var(--tinta);text-decoration:underline;text-underline-offset:3px}
+  @media (max-width:700px){.pie-pagina .caja{grid-template-columns:1fr}.pie-pagina nav{justify-self:start;gap:24px 40px}}
+
+  /* Visor de capturas */
+  .visor{width:min(1200px,94vw);max-width:none;max-height:94vh;padding:0;border:0;background:transparent;color:#fff;overflow:visible}
+  .visor::backdrop{background:rgba(4,8,14,.9);backdrop-filter:blur(4px)}
+  .visor figure{margin:0}
+  .visor img{width:100%;max-height:82vh;object-fit:contain;border-radius:10px;background:#000}
+  .visor figcaption{margin-top:12px;text-align:center;font:600 1.05rem/1.3 var(--titulos);letter-spacing:.08em;text-transform:uppercase;color:var(--suave)}
+  .visor .mando{position:absolute;top:50%;translate:0 -50%;width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(10,16,25,.7);color:#fff;cursor:pointer;display:grid;place-items:center}
+  .visor .mando:hover{background:rgba(10,16,25,.95)}
+  .visor .mando svg{width:22px;height:22px}
+  .visor .previa{left:12px}.visor .siguiente{right:12px}
+  .visor .cerrar{position:absolute;top:-56px;right:0;translate:none}
+
+  /* Entrada suave al bajar */
+  .js .aparece{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+  .js .aparece.vista{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.js .aparece{opacity:1;transform:none;transition:none}*{transition-duration:0s !important}}
 </style>
 </head>
 <body>
-<div class="page">
-<header>
-  <div class="brand"><img src="logo.svg" alt="" width="52" height="52"><span>LSM Games Studio<small>Legendary Strategy Makers</small></span></div>
-  <h1>Nuestros juegos</h1>
-  <p class="lead">Juegos para Android y PC · <span lang="en">Games for Android and PC</span></p>
-</header>
-<main>
-  <div class="tabs" role="tablist" hidden aria-label="Plataforma · Platform">
-    <button type="button" role="tab" id="tab-android" aria-controls="panel-android" aria-selected="true">Android<span class="count">5</span></button>
-    <button type="button" role="tab" id="tab-steam" aria-controls="panel-steam" aria-selected="false" tabindex="-1">Steam <span class="sub">(PC)</span><span class="count">1</span></button>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-corazon" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" d="M12 20.5s-7.5-4.6-9.2-9.4C1.7 7.9 3.8 4.5 7.3 4.5c2 0 3.6 1.1 4.7 2.8 1.1-1.7 2.7-2.8 4.7-2.8 3.5 0 5.6 3.4 4.5 6.6-1.7 4.8-9.2 9.4-9.2 9.4z"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" d="M6 3.8v16.4c0 .8.9 1.3 1.6.8l12.6-8.2c.6-.4.6-1.2 0-1.6L7.6 3c-.7-.5-1.6 0-1.6.8z"/></symbol>
+  <symbol id="i-flecha" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M12 5v14m-6-6 6 6 6-6"/></symbol>
+  <symbol id="i-correo" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></g></symbol>
+  <symbol id="i-hacha" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" transform="rotate(-40 12 12)"><rect x="6" y="3" width="12" height="5.5" rx="1.3"/><path d="M12 8.5V21.5"/></g></symbol>
+  <symbol id="i-sol" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></g></symbol>
+  <symbol id="i-luna" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></symbol>
+  <symbol id="i-izq" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="m15 5-7 7 7 7"/></symbol>
+  <symbol id="i-der" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="m9 5 7 7-7 7"/></symbol>
+  <symbol id="i-cerrar" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path fill="currentColor" d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.82-5.97 6.82H1.68l7.73-8.84L1.25 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.12z"/></symbol>
+  <symbol id="i-tiktok" viewBox="0 0 24 24"><path fill="currentColor" d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03a10.7 10.7 0 0 1-4.2-.97c-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75a7.6 7.6 0 0 1-1.35 3.94 7.4 7.4 0 0 1-5.91 3.21 7.3 7.3 0 0 1-4.08-1.03 7.5 7.5 0 0 1-3.65-5.71c-.02-.5-.03-1-.01-1.49a7.6 7.6 0 0 1 8.73-6.68c.02 1.48-.04 2.96-.04 4.44a3.4 3.4 0 0 0-4.38 2.12c-.21.51-.15 1.07-.14 1.61a3.3 3.3 0 0 0 6.27 1.26c.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></symbol>
+  <symbol id="i-youtube" viewBox="0 0 24 24"><path fill="currentColor" d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.2 3.6z"/></symbol>
+  <symbol id="i-instagram" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/></g><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></symbol>
+</svg>
+
+<header class="barra" id="barra">
+  <div class="caja">
+    <a class="marca" href="#inicio"><img src="logo.svg" alt="" width="34" height="34">LSM Games Studio</a>
+    <nav class="menu" aria-label="Secciones">
+      <a href="#juegos"><span class="es">Juegos</span><span class="en">Games</span></a>
+      <a href="#timberland">Timberland</a>
+      <a href="#estudio"><span class="es">Estudio</span><span class="en">Studio</span></a>
+      <a href="#contacto"><span class="es">Contacto</span><span class="en">Contact</span></a>
+    </nav>
+    <div class="idiomas" role="group" aria-label="Idioma · Language">
+      <button type="button" data-idioma="es" aria-pressed="true" lang="es">ES</button>
+      <button type="button" data-idioma="en" aria-pressed="false" lang="en">EN</button>
+    </div>
   </div>
-  <section id="panel-android" role="tabpanel" aria-labelledby="tab-android">
-  <ul>
-    <li>
-      <img src="iconos/minicity.png" alt="" width="72" height="72">
-      <div>
-      <span class="name">Mini City</span>
-      <span class="links">
-        <a href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.minicity">Google Play</a>
-        <a href="minicity/">Política de privacidad</a>
-        <a href="minicity/#en" lang="en">Privacy policy</a>
-      </span>
+</header>
+
+<main>
+  <h1 class="oculto">LSM Games Studio · Legendary Strategy Makers</h1>
+
+  <section class="portada" id="inicio" aria-labelledby="portada-titulo">
+    <picture>
+      <source media="(max-width: 900px)" srcset="img/timberland/hero-movil.webp">
+      <img class="fondo" src="img/timberland/hero.webp" alt="" width="2400" height="775" fetchpriority="high">
+    </picture>
+    <div class="caja">
+      <span class="chapa"><span class="punto" aria-hidden="true"></span><span class="es">Próximamente en Steam</span><span class="en">Coming soon to Steam</span></span>
+      <h2 id="portada-titulo"><img src="img/timberland/logo.webp" alt="Timberland" width="960" height="320"></h2>
+      <p class="entradilla">
+        <span class="es">Un pueblo de voxels que solo funciona si tú lo organizas. Reparte trece oficios entre tus aldeanos, encadena talleres, siembra pensando en el invierno y monta la guardia: cuando cae la noche, sale lo que vive fuera.</span>
+        <span class="en">A voxel village that only works if you organize it. Assign thirteen trades to your settlers, chain workshops together, sow with winter in mind, and post a watch: when night falls, something comes out.</span>
+      </p>
+      <div class="acciones">
+        <a class="boton boton--oro" href="https://store.steampowered.com/app/5224900/Timberland/"><svg aria-hidden="true"><use href="#i-corazon"/></svg><span class="es">Añadir a mi lista de deseados</span><span class="en">Add to my wishlist</span></a>
+        <a class="boton boton--claro" href="#juegos"><span class="es">Todos nuestros juegos</span><span class="en">All our games</span><svg aria-hidden="true"><use href="#i-flecha"/></svg></a>
       </div>
-    </li>
-    <li>
-      <img src="iconos/popiblocks.png" alt="" width="72" height="72">
-      <div>
-      <span class="name">PopiBlocks</span>
-      <span class="links">
-        <a href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.popiblocks">Google Play</a>
-        <a href="popiblocks/">Política de privacidad</a>
-        <a href="popiblocks/#en" lang="en">Privacy policy</a>
-      </span>
-      </div>
-    </li>
-    <li>
-      <img src="iconos/hearthfall.png" alt="" width="72" height="72">
-      <div>
-      <span class="name">Hearthfall</span>
-      <span class="links">
-        <a href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.hearthfall">Google Play</a>
-        <a href="hearthfall/">Política de privacidad</a>
-        <a href="hearthfall/#en" lang="en">Privacy policy</a>
-      </span>
-      </div>
-    </li>
-    <li>
-      <img src="iconos/hearthandrampart.png" alt="" width="72" height="72">
-      <div>
-      <span class="name">Hearth &amp; Rampart</span>
-      <span class="links">
-        <a href="https://play.google.com/store/apps/details?id=com.lsm.games.studio">Google Play</a>
-        <a href="hearthandrampart/">Política de privacidad</a>
-        <a href="hearthandrampart/#en" lang="en">Privacy policy</a>
-      </span>
-      </div>
-    </li>
-    <li>
-      <img src="iconos/fourcrowns.png" alt="" width="72" height="72">
-      <div>
-      <span class="name">Four Crowns</span>
-      <span class="links">
-        <a href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.fourcrowns">Google Play</a>
-        <a href="fourcrowns/">Política de privacidad</a>
-        <a href="fourcrowns/#en" lang="en">Privacy policy</a>
-      </span>
-      </div>
-    </li>
-  </ul>
+      <p class="datos"><span class="es">Acceso anticipado · Noviembre de 2026 · PC</span><span class="en">Early Access · November 2026 · PC</span></p>
+    </div>
   </section>
-  <section id="panel-steam" role="tabpanel" aria-labelledby="tab-steam">
-  <ul>
-    <li>
-      <img src="iconos/timberland.png" alt="" width="72" height="72">
-      <div>
-      <span class="name">Timberland</span>
-      <span class="links">
-        <a href="https://store.steampowered.com/app/5224900/Timberland/">Steam</a>
-      </span>
+
+  <section class="seccion" id="juegos" aria-labelledby="juegos-titulo">
+    <span id="android"></span>
+    <div class="caja">
+      <div class="cabeza aparece">
+        <div>
+          <p class="antetitulo"><span class="es">Catálogo</span><span class="en">Catalog</span></p>
+          <h2 class="titulo" id="juegos-titulo"><span class="es">Nuestros juegos</span><span class="en">Our games</span></h2>
+          <p class="intro"><span class="es">Estrategia, gestión y algún puzle, para el ordenador y para el móvil.</span><span class="en">Strategy, management and the odd puzzle, for your computer and your phone.</span></p>
+        </div>
       </div>
-    </li>
-  </ul>
+
+      <div class="juegos">
+        <article class="juego aparece">
+          <a class="arte" href="https://store.steampowered.com/app/5224900/Timberland/" tabindex="-1" aria-hidden="true"><img src="img/juegos/timberland.webp" alt="" width="920" height="430" loading="lazy"></a>
+          <div class="cuerpo">
+            <div class="etiquetas"><span class="etiqueta etiqueta--pc">PC · Steam</span><span class="etiqueta etiqueta--nuevo"><span class="es">Próximamente</span><span class="en">Coming soon</span></span></div>
+            <h3>Timberland</h3>
+            <p class="genero"><span class="es">Gestión de un pueblo · Voxel</span><span class="en">Village management · Voxel</span></p>
+            <p class="resumen"><span class="es">Reparte trece oficios, encadena talleres, siembra pensando en el invierno y monta la guardia para cuando caiga la noche.</span><span class="en">Assign thirteen trades, chain workshops together, sow with winter in mind and post a watch for when night falls.</span></p>
+            <div class="pies"><a class="boton boton--oro boton--peq" href="https://store.steampowered.com/app/5224900/Timberland/"><svg aria-hidden="true"><use href="#i-corazon"/></svg>Steam</a><a href="#timberland"><span class="es">Capturas</span><span class="en">Screenshots</span></a></div>
+          </div>
+        </article>
+
+        <article class="juego aparece">
+          <a class="arte" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.fourcrowns" tabindex="-1" aria-hidden="true"><img class="es" src="img/juegos/fourcrowns.webp" alt="" width="1024" height="500" loading="lazy"><img class="en" src="img/juegos/fourcrowns-en.webp" alt="" width="1024" height="500" loading="lazy"></a>
+          <div class="cuerpo">
+            <div class="etiquetas"><span class="etiqueta etiqueta--android">Android</span></div>
+            <h3>Four Crowns</h3>
+            <p class="genero"><span class="es">Estrategia 4X por turnos</span><span class="en">Turn-based 4X strategy</span></p>
+            <p class="resumen"><span class="es">Cuatro reinos, una isla y una sola corona. Explora, funda ciudades, investiga y elige entre la paz y la guerra, con una mano.</span><span class="en">Four kingdoms, one island, one crown. Explore, found cities, research and choose between peace and war, one-handed.</span></p>
+            <div class="pies"><a class="boton boton--azul boton--peq" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.fourcrowns"><svg aria-hidden="true"><use href="#i-play"/></svg>Google Play</a><a href="fourcrowns/" data-en-href="fourcrowns/#en"><span class="es">Privacidad</span><span class="en">Privacy</span></a></div>
+          </div>
+        </article>
+
+        <article class="juego aparece">
+          <a class="arte" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.hearthfall" tabindex="-1" aria-hidden="true"><img class="es" src="img/juegos/hearthfall.webp" alt="" width="1024" height="500" loading="lazy"><img class="en" src="img/juegos/hearthfall-en.webp" alt="" width="1024" height="500" loading="lazy"></a>
+          <div class="cuerpo">
+            <div class="etiquetas"><span class="etiqueta etiqueta--android">Android</span></div>
+            <h3>Hearthfall</h3>
+            <p class="genero"><span class="es">Construcción de poblados</span><span class="en">Village builder</span></p>
+            <p class="resumen"><span class="es">Funda un poblado en un bosque que no perdona y aguanta cuatro años de estaciones. Cada otoño sale la Luna Roja.</span><span class="en">Found a village in an unforgiving forest and last four years of seasons. Every autumn, the Red Moon rises.</span></p>
+            <div class="pies"><a class="boton boton--azul boton--peq" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.hearthfall"><svg aria-hidden="true"><use href="#i-play"/></svg>Google Play</a><a href="hearthfall/" data-en-href="hearthfall/#en"><span class="es">Privacidad</span><span class="en">Privacy</span></a></div>
+          </div>
+        </article>
+
+        <article class="juego aparece">
+          <a class="arte" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio" tabindex="-1" aria-hidden="true"><img class="es" src="img/juegos/hearthandrampart.webp" alt="" width="1024" height="500" loading="lazy"><img class="en" src="img/juegos/hearthandrampart-en.webp" alt="" width="1024" height="500" loading="lazy"></a>
+          <div class="cuerpo">
+            <div class="etiquetas"><span class="etiqueta etiqueta--android">Android</span></div>
+            <h3>Hearth &amp; Rampart</h3>
+            <p class="genero"><span class="es">Estrategia y defensa medieval</span><span class="en">Medieval strategy &amp; defense</span></p>
+            <p class="resumen"><span class="es">Construye, organiza y defiende tu aldea en un mundo 3D de bloques, y resiste asedios cada vez más duros.</span><span class="en">Build, organize and defend your village in a 3D block world, and hold out against ever-tougher sieges.</span></p>
+            <div class="pies"><a class="boton boton--azul boton--peq" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio"><svg aria-hidden="true"><use href="#i-play"/></svg>Google Play</a><a href="hearthandrampart/" data-en-href="hearthandrampart/#en"><span class="es">Privacidad</span><span class="en">Privacy</span></a></div>
+          </div>
+        </article>
+
+        <article class="juego aparece">
+          <a class="arte" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.minicity" tabindex="-1" aria-hidden="true"><img class="es" src="img/juegos/minicity.webp" alt="" width="1024" height="500" loading="lazy"><img class="en" src="img/juegos/minicity-en.webp" alt="" width="1024" height="500" loading="lazy"></a>
+          <div class="cuerpo">
+            <div class="etiquetas"><span class="etiqueta etiqueta--android">Android</span></div>
+            <h3>Mini City</h3>
+            <p class="genero"><span class="es">Construcción de ciudades</span><span class="en">City builder</span></p>
+            <p class="resumen"><span class="es">Traza calles, levanta barrios y haz que tus vecinos vivan felices sin que las cuentas acaben en números rojos.</span><span class="en">Lay out streets, raise neighborhoods and keep your citizens happy without the books ending up in the red.</span></p>
+            <div class="pies"><a class="boton boton--azul boton--peq" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.minicity"><svg aria-hidden="true"><use href="#i-play"/></svg>Google Play</a><a href="minicity/" data-en-href="minicity/#en"><span class="es">Privacidad</span><span class="en">Privacy</span></a></div>
+          </div>
+        </article>
+
+        <article class="juego aparece">
+          <a class="arte" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.popiblocks" tabindex="-1" aria-hidden="true"><img class="es" src="img/juegos/popiblocks.webp" alt="" width="1024" height="500" loading="lazy"><img class="en" src="img/juegos/popiblocks-en.webp" alt="" width="1024" height="500" loading="lazy"></a>
+          <div class="cuerpo">
+            <div class="etiquetas"><span class="etiqueta etiqueta--android">Android</span></div>
+            <h3>PopiBlocks</h3>
+            <p class="genero"><span class="es">Puzle de bloques</span><span class="en">Block puzzle</span></p>
+            <p class="resumen"><span class="es">La pila no para de subir: intercambia bloques, junta tres y encadena combos. Cien niveles en diez mundos.</span><span class="en">The stack keeps rising: swap blocks, match three and chain combos. A hundred levels across ten worlds.</span></p>
+            <div class="pies"><a class="boton boton--azul boton--peq" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.popiblocks"><svg aria-hidden="true"><use href="#i-play"/></svg>Google Play</a><a href="popiblocks/" data-en-href="popiblocks/#en"><span class="es">Privacidad</span><span class="en">Privacy</span></a></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion seccion--alt" id="timberland" aria-labelledby="timberland-titulo">
+    <span id="steam"></span>
+    <div class="caja">
+      <div class="cabeza aparece">
+        <div>
+          <p class="antetitulo">Timberland · PC · Steam</p>
+          <h2 class="titulo" id="timberland-titulo"><span class="es">Un pueblo que no se construye: se organiza</span><span class="en">A village you don't build. You organize it</span></h2>
+          <p class="intro">
+            <span class="es">Empiezas con un puñado de aldeanos en un valle de voxels que nadie ha pisado. Aquí no se colocan edificios y aparecen solos: se reparten oficios. Lo que sale de sus manos es lo que hace posible el oficio siguiente, y así hasta que el valle es un pueblo.</span>
+            <span class="en">You start with a handful of settlers in a voxel valley nobody has walked before. You don't place buildings and watch them appear: you assign trades. What comes off their hands is what makes the next trade possible, until the valley becomes a village.</span>
+          </p>
+        </div>
+        <a class="boton boton--oro" href="https://store.steampowered.com/app/5224900/Timberland/"><svg aria-hidden="true"><use href="#i-corazon"/></svg><span class="es">Ver en Steam</span><span class="en">View on Steam</span></a>
+      </div>
+
+      <div class="galeria aparece" id="galeria">
+        <button type="button" data-grande="img/timberland/primavera.webp"><img src="img/timberland/primavera-p.webp" alt="" width="800" height="450" loading="lazy"><span class="pie"><span class="es">Primavera junto al río</span><span class="en">Spring by the river</span></span></button>
+        <button type="button" data-grande="img/timberland/otono.webp"><img src="img/timberland/otono-p.webp" alt="" width="800" height="450" loading="lazy"><span class="pie"><span class="es">Otoño, con lluvia</span><span class="en">Autumn rain</span></span></button>
+        <button type="button" data-grande="img/timberland/invierno.webp"><img src="img/timberland/invierno-p.webp" alt="" width="800" height="450" loading="lazy"><span class="pie"><span class="es">Noche de invierno</span><span class="en">A winter night</span></span></button>
+        <button type="button" data-grande="img/timberland/incursion.webp"><img src="img/timberland/incursion-p.webp" alt="" width="800" height="450" loading="lazy"><span class="pie"><span class="es">La guardia en la muralla</span><span class="en">The watch on the wall</span></span></button>
+      </div>
+
+      <div class="rasgos">
+        <article class="rasgo aparece">
+          <svg aria-hidden="true"><use href="#i-hacha"/></svg>
+          <h3><span class="es">Trece oficios que dependen unos de otros</span><span class="en">Thirteen trades that depend on each other</span></h3>
+          <p><span class="es">El tronco que trae el leñador lo convierte el carpintero en tablas; con tablas se levanta el taller donde el herrero funde el mineral que sube el minero.</span><span class="en">The log the woodcutter brings becomes planks at the carpenter's bench; those planks raise the workshop where the blacksmith smelts the ore the miner hauls up.</span></p>
+        </article>
+        <article class="rasgo aparece">
+          <svg aria-hidden="true"><use href="#i-sol"/></svg>
+          <h3><span class="es">Un año que se nota</span><span class="en">A year you can feel</span></h3>
+          <p><span class="es">En primavera brotan las hortalizas, en verano el campo va solo, en otoño solo avanza lo que el granjero atiende en persona y en invierno se vive de lo que guardaste.</span><span class="en">Vegetables sprout in spring, summer crops grow on their own, in autumn only what the farmer tends in person makes progress, and winter runs on what you stored.</span></p>
+        </article>
+        <article class="rasgo aparece">
+          <svg aria-hidden="true"><use href="#i-luna"/></svg>
+          <h3><span class="es">De noche sale lo de fuera</span><span class="en">Night brings company</span></h3>
+          <p><span class="es">Cuando se pone el sol aparece lo que vive más allá de la niebla. Marca puestos de guardia, pon a un soldado a patrullar y a un arquero donde cubra.</span><span class="en">When the sun goes down, whatever lives past the fog comes out. Mark guard posts, set a soldier patrolling and an archer where it counts.</span></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="seccion" id="estudio" aria-labelledby="estudio-titulo">
+    <div class="caja estudio">
+      <figure class="sello aparece">
+        <img src="logo.svg" alt="" width="220" height="220">
+        <figcaption>Legendary Strategy Makers</figcaption>
+      </figure>
+      <div class="aparece">
+        <p class="antetitulo"><span class="es">El estudio</span><span class="en">The studio</span></p>
+        <h2 class="titulo" id="estudio-titulo"><span class="es">Pueblos que organizar, reinos que defender</span><span class="en">Villages to organize, kingdoms to defend</span></h2>
+        <p><span class="es"><strong>LSM Games Studio</strong> es un estudio pequeño e independiente. Hacemos juegos de estrategia y gestión: pueblos que salen adelante por cómo los organizas, ciudades que hay que cuadrar y reinos que defender. De ahí las siglas: <strong>Legendary Strategy Makers</strong>.</span><span class="en"><strong>LSM Games Studio</strong> is a small, independent studio. We make strategy and management games: villages that thrive on how you organize them, cities that have to balance and kingdoms to defend. Hence the name: <strong>Legendary Strategy Makers</strong>.</span></p>
+        <p><span class="es">Preferimos ajustar nuestros juegos con quien los juega. Si tienes una idea o encuentras un fallo, nos encantará leerte.</span><span class="en">We'd rather tune our games with the people who play them. If you have an idea or run into a bug, we'd love to hear from you.</span></p>
+
+        <div class="contacto" id="contacto">
+          <h3><span class="es">Contacto</span><span class="en">Contact</span></h3>
+          <p><span class="es">Prensa, creadores de contenido, ideas o fallos: escríbenos o síguenos.</span><span class="en">Press, content creators, ideas or bugs: write to us or follow along.</span></p>
+          <div class="acciones">
+            <a class="boton boton--claro boton--peq correo" href="mailto:lsmgamesstudio@gmail.com"><svg aria-hidden="true"><use href="#i-correo"/></svg>lsmgamesstudio@gmail.com</a>
+            <div class="redes">
+              <a href="https://x.com/LSMGamesStudio" aria-label="X"><svg aria-hidden="true"><use href="#i-x"/></svg></a>
+              <a href="https://www.youtube.com/@LSMGamesStudio" aria-label="YouTube"><svg aria-hidden="true"><use href="#i-youtube"/></svg></a>
+              <a href="https://www.tiktok.com/@lsmgames" aria-label="TikTok"><svg aria-hidden="true"><use href="#i-tiktok"/></svg></a>
+              <a href="https://www.instagram.com/lsmgamesstudio/" aria-label="Instagram"><svg aria-hidden="true"><use href="#i-instagram"/></svg></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 </main>
-<footer>LSM Games Studio · Legendary Strategy Makers · <a href="mailto:lsmgamesstudio@gmail.com">lsmgamesstudio@gmail.com</a> · <a href="https://x.com/LSMGamesStudio">X</a> · <a href="https://www.tiktok.com/@lsmgames">TikTok</a> · <a href="https://www.youtube.com/@LSMGamesStudio">YouTube</a> · <a href="https://www.instagram.com/lsmgamesstudio/">Instagram</a></footer>
-</div>
+
+<footer class="pie-pagina">
+  <div class="caja">
+    <div>
+      <a class="marca" href="#inicio"><img src="logo.svg" alt="" width="28" height="28">LSM Games Studio</a>
+      <p>© 2026 LSM Games Studio · Legendary Strategy Makers</p>
+    </div>
+    <nav aria-label="Enlaces">
+      <div>
+        <h4><span class="es">Tiendas</span><span class="en">Stores</span></h4>
+        <ul>
+          <li><a href="steam/">Steam</a></li>
+          <li><a href="android/">Google Play</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4><span class="es">Privacidad</span><span class="en">Privacy</span></h4>
+        <ul>
+          <li><a href="fourcrowns/" data-en-href="fourcrowns/#en">Four Crowns</a></li>
+          <li><a href="hearthfall/" data-en-href="hearthfall/#en">Hearthfall</a></li>
+          <li><a href="hearthandrampart/" data-en-href="hearthandrampart/#en">Hearth &amp; Rampart</a></li>
+          <li><a href="minicity/" data-en-href="minicity/#en">Mini City</a></li>
+          <li><a href="popiblocks/" data-en-href="popiblocks/#en">PopiBlocks</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</footer>
+
+<dialog class="visor" id="visor" aria-label="Capturas de Timberland">
+  <figure><img id="visor-img" src="" alt=""><figcaption id="visor-pie"></figcaption></figure>
+  <button type="button" class="mando cerrar" data-accion="cerrar"><svg aria-hidden="true"><use href="#i-cerrar"/></svg><span class="oculto">Cerrar · Close</span></button>
+  <button type="button" class="mando previa" data-accion="-1"><svg aria-hidden="true"><use href="#i-izq"/></svg><span class="oculto">Anterior · Previous</span></button>
+  <button type="button" class="mando siguiente" data-accion="1"><svg aria-hidden="true"><use href="#i-der"/></svg><span class="oculto">Siguiente · Next</span></button>
+</dialog>
+
 <script>
-  // Pestañas Android / Steam: se abre la de la dirección (#steam) o la de Android; con las flechas se pasa de una a otra
-  (function(){
-    document.querySelector('.tabs').hidden=false;
-    var tabs=[].slice.call(document.querySelectorAll('[role="tab"]'));
-    function elegir(tab,foco){
-      tabs.forEach(function(t){
-        var si=t===tab;
-        t.setAttribute('aria-selected',si?'true':'false');
-        t.tabIndex=si?0:-1;
-        document.getElementById(t.getAttribute('aria-controls')).hidden=!si;
-      });
-      if(foco)tab.focus();
-    }
-    tabs.forEach(function(t,i){
-      t.addEventListener('click',function(){elegir(t);history.replaceState(null,'',t.id==='tab-steam'?'#steam':'#android');});
-      t.addEventListener('keydown',function(e){
-        var n=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0;
-        if(!n)return;
-        e.preventDefault();
-        elegir(tabs[(i+n+tabs.length)%tabs.length],true);
-      });
+(function(){
+  var raiz=document.documentElement;
+  raiz.classList.add('js');
+
+  // Idioma: el que se eligio la ultima vez; si no, el del navegador (espanol o, si no, ingles)
+  var titulos={es:'LSM Games Studio · Juegos de estrategia y gestión',en:'LSM Games Studio · Strategy and management games'};
+  function leer(){try{return localStorage.getItem('idioma')}catch(e){return null}}
+  function guardar(i){try{localStorage.setItem('idioma',i)}catch(e){}}
+  function poner(idioma){
+    raiz.dataset.idioma=idioma;
+    raiz.lang=idioma;
+    document.title=titulos[idioma];
+    document.querySelectorAll('.idiomas button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.idioma===idioma?'true':'false')});
+    document.querySelectorAll('[data-en-href]').forEach(function(a){
+      if(!a.dataset.esHref)a.dataset.esHref=a.getAttribute('href');
+      a.setAttribute('href',idioma==='en'?a.dataset.enHref:a.dataset.esHref);
     });
-    elegir(document.getElementById(location.hash==='#steam'?'tab-steam':'tab-android'));
-  })();
+  }
+  var elegido=leer();
+  poner(elegido==='es'||elegido==='en'?elegido:((navigator.language||'es').toLowerCase().indexOf('es')===0?'es':'en'));
+  document.querySelectorAll('.idiomas button').forEach(function(b){
+    b.addEventListener('click',function(){poner(b.dataset.idioma);guardar(b.dataset.idioma)});
+  });
+
+  // La barra se vuelve opaca al bajar
+  var barra=document.getElementById('barra');
+  function mirarBarra(){barra.classList.toggle('solida',window.scrollY>40)}
+  mirarBarra();
+  window.addEventListener('scroll',mirarBarra,{passive:true});
+
+  // Las piezas entran al aparecer en pantalla
+  var piezas=document.querySelectorAll('.aparece');
+  if('IntersectionObserver' in window){
+    var ojo=new IntersectionObserver(function(entradas){
+      entradas.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vista');ojo.unobserve(e.target)}});
+    },{rootMargin:'0px 0px -8% 0px'});
+    piezas.forEach(function(p){ojo.observe(p)});
+  }else{
+    piezas.forEach(function(p){p.classList.add('vista')});
+  }
+
+  // Visor de capturas: clic para ampliar, flechas para pasar, Esc para cerrar
+  var visor=document.getElementById('visor');
+  var fotos=[].slice.call(document.querySelectorAll('#galeria button'));
+  var img=document.getElementById('visor-img'), pie=document.getElementById('visor-pie'), actual=0;
+  if(!visor.showModal)return;
+  function mostrar(i){
+    actual=(i+fotos.length)%fotos.length;
+    var b=fotos[actual], texto=b.querySelector('.pie .'+raiz.dataset.idioma).textContent;
+    img.src=b.dataset.grande; img.alt=texto; pie.textContent=texto;
+  }
+  fotos.forEach(function(b,i){b.addEventListener('click',function(){mostrar(i);visor.showModal()})});
+  visor.addEventListener('click',function(e){
+    var mando=e.target.closest('[data-accion]');
+    if(mando){mando.dataset.accion==='cerrar'?visor.close():mostrar(actual+Number(mando.dataset.accion));return}
+    if(e.target===visor)visor.close();
+  });
+  visor.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'){mostrar(actual+1);e.preventDefault()}
+    if(e.key==='ArrowLeft'){mostrar(actual-1);e.preventDefault()}
+  });
+})();
 </script>
 </body>
 </html>
