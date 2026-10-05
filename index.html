@@ -63,22 +63,66 @@
   .idiomas button[aria-pressed="true"]{background:var(--tinta);color:var(--fondo)}
   @media (max-width:760px){.menu{display:none}.idiomas{margin-left:auto}}
 
-  /* Portada: Timberland */
-  .portada{position:relative;min-height:min(76vh,700px);display:flex;align-items:flex-end;isolation:isolate;overflow:hidden}
-  .portada picture,.portada .fondo{position:absolute;inset:0;z-index:-2}
-  .portada .fondo{width:100%;height:100%;object-fit:cover;object-position:50% 45%}
-  .portada::before{content:"";position:absolute;inset:0;z-index:-1;
+  /* Portada: noticias que pasan solas (Timberland, el juego nuevo, Mini City) */
+  .portada{position:relative;display:grid;isolation:isolate;overflow:hidden;background:var(--fondo)}
+  .diapo{grid-area:1/1;position:relative;display:flex;align-items:flex-end;min-height:min(76vh,700px);isolation:isolate;overflow:hidden;
+    transition:opacity .8s ease,visibility 0s linear .8s}
+  .diapo.activa{transition:opacity .8s ease,visibility 0s}
+  .diapo:not(.activa){opacity:0;visibility:hidden}
+  .diapo picture,.diapo .fondo{position:absolute;inset:0;z-index:-2}
+  .diapo .fondo{width:100%;height:100%;object-fit:cover;object-position:50% 45%;transform:scale(1.04);transition:transform 7s ease-out}
+  .diapo.activa .fondo{transform:none}
+  .diapo::before{content:"";position:absolute;inset:0;z-index:-1;
     background:linear-gradient(to top,var(--fondo) 0%,rgba(10,16,25,.88) 20%,rgba(10,16,25,.35) 52%,rgba(10,16,25,.15) 72%,rgba(10,16,25,.6) 100%),
                linear-gradient(90deg,rgba(10,16,25,.7) 0%,rgba(10,16,25,.25) 45%,transparent 70%)}
-  .portada .caja{width:100%;padding-top:110px;padding-bottom:clamp(36px,6vh,60px)}
+  .diapo .caja{width:100%;padding-top:110px;padding-bottom:clamp(64px,8vh,84px);padding-inline:clamp(var(--margen),calc(76px - (100vw - var(--ancho)) / 2),76px)}
+  .diapo .caja.con-moviles{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:40px}
   .chapa{display:inline-flex;align-items:center;gap:8px;font:600 .9rem/1 var(--titulos);letter-spacing:.14em;text-transform:uppercase;color:#fff;
     padding:8px 14px;border-radius:999px;background:rgba(10,16,25,.55);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
   .chapa .punto{width:8px;height:8px;border-radius:50%;background:var(--oro);box-shadow:0 0 0 4px rgba(242,184,75,.22)}
+  .chapa .punto--verde{background:var(--verde);box-shadow:0 0 0 4px rgba(95,208,143,.22)}
+  .chapa .punto--azul{background:var(--azul);box-shadow:0 0 0 4px rgba(91,154,214,.25)}
   .portada h2{margin:18px 0 0}
-  .portada h2 img{width:clamp(250px,38vw,500px);filter:drop-shadow(0 10px 28px rgba(0,0,0,.55))}
+  .portada h2 .logo{width:clamp(250px,38vw,500px);filter:drop-shadow(0 10px 28px rgba(0,0,0,.55))}
+  .portada h2.nombre{display:flex;align-items:center;gap:clamp(12px,2vw,20px);font:800 clamp(2.5rem,6vw,4.4rem)/.95 var(--titulos);color:#fff;text-shadow:0 4px 24px rgba(0,0,0,.55)}
+  .portada h2.nombre img{width:clamp(56px,7vw,84px);height:auto;flex:none;border-radius:22%;box-shadow:0 10px 26px rgba(0,0,0,.45)}
   .portada .entradilla{max-width:600px;margin:14px 0 0;font-size:clamp(1.05rem,1.6vw,1.25rem);line-height:1.6;color:#eef3f8;text-shadow:0 1px 12px rgba(0,0,0,.6)}
   .acciones{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
   .portada .datos{margin:20px 0 0;color:var(--suave);font:600 .95rem/1.4 var(--titulos);letter-spacing:.12em;text-transform:uppercase}
+
+  /* Las capturas en dos moviles, a la derecha de la noticia */
+  .moviles{position:relative;width:370px;height:450px;margin-bottom:8px}
+  .movil{position:absolute;width:224px;padding:7px;border-radius:30px;background:#05080d;box-shadow:0 30px 60px rgba(0,0,0,.55),inset 0 0 0 1px rgba(255,255,255,.14)}
+  .movil img{width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:23px}
+  .movil--atras{right:0;top:0;rotate:7deg;filter:brightness(.82)}
+  .movil--delante{left:0;bottom:0;rotate:-5deg}
+  @media (max-width:1180px){.moviles{width:320px;height:400px}.movil{width:194px;border-radius:26px}.movil img{border-radius:20px}}
+  @media (max-width:900px){.moviles{display:none}.diapo .caja.con-moviles{display:block}}
+
+  /* Flechas a los lados y puntos abajo; el punto de la noticia se llena en los 5 segundos que dura */
+  .mandos{display:none;grid-area:1/1;position:relative;z-index:5;pointer-events:none}
+  .js .mandos{display:block}
+  .mandos>*{pointer-events:auto}
+  .flecha{position:absolute;top:50%;translate:0 -50%;width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(10,16,25,.55);color:#fff;
+    cursor:pointer;display:grid;place-items:center;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:background-color .2s,border-color .2s}
+  .flecha:hover{background:rgba(10,16,25,.85);border-color:rgba(255,255,255,.45)}
+  .flecha svg{width:22px;height:22px}
+  .flecha--izq{left:16px}.flecha--der{right:16px}
+  .puntos{position:absolute;left:50%;bottom:16px;translate:-50% 0;display:flex}
+  .puntos button{appearance:none;border:0;background:none;padding:12px 5px;cursor:pointer}
+  .puntos .raya{position:relative;display:block;width:10px;height:6px;border-radius:999px;background:rgba(255,255,255,.35);overflow:hidden;transition:width .3s,background-color .2s}
+  .puntos button:hover .raya{background:rgba(255,255,255,.6)}
+  .puntos button[aria-current="true"] .raya{width:38px}
+  .puntos button[aria-current="true"] .raya::after{content:"";position:absolute;inset:0;background:#fff;transform-origin:left;animation:llenar 5s linear forwards}
+  .portada.quieta .puntos .raya::after{animation-play-state:paused}
+  .portada.sin-auto .puntos .raya::after{animation:none}
+  @keyframes llenar{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  @media (max-width:760px){
+    .diapo .caja{padding-inline:var(--margen);padding-bottom:84px}
+    .flecha{top:auto;bottom:10px;translate:none;width:44px;height:44px}
+    .flecha--izq{left:var(--margen)}.flecha--der{right:var(--margen)}
+    .puntos{bottom:14px}
+  }
 
   .boton{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:12px 22px;border-radius:8px;
     font:600 1.08rem/1 var(--titulos);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border:1px solid transparent;cursor:pointer;
@@ -232,23 +276,89 @@
 <main>
   <h1 class="oculto">LSM Games Studio · Legendary Strategy Makers</h1>
 
-  <section class="portada" id="inicio" aria-labelledby="portada-titulo">
-    <picture>
-      <source media="(max-width: 900px)" srcset="img/timberland/hero-movil.webp">
-      <img class="fondo" src="img/timberland/hero.webp" alt="" width="2400" height="775" fetchpriority="high">
-    </picture>
-    <div class="caja">
-      <span class="chapa"><span class="punto" aria-hidden="true"></span><span class="es">Próximamente en Steam</span><span class="en">Coming soon to Steam</span></span>
-      <h2 id="portada-titulo"><img src="img/timberland/logo.webp" alt="Timberland" width="960" height="320"></h2>
-      <p class="entradilla">
-        <span class="es">Un pueblo de voxels que solo funciona si tú lo organizas. Reparte trece oficios entre tus aldeanos, encadena talleres, siembra pensando en el invierno y monta la guardia: cuando cae la noche, sale lo que vive fuera.</span>
-        <span class="en">A voxel village that only works if you organize it. Assign thirteen trades to your settlers, chain workshops together, sow with winter in mind, and post a watch: when night falls, something comes out.</span>
-      </p>
-      <div class="acciones">
-        <a class="boton boton--oro" href="https://store.steampowered.com/app/5224900/Timberland/"><svg aria-hidden="true"><use href="#i-corazon"/></svg><span class="es">Añadir a mi lista de deseados</span><span class="en">Add to my wishlist</span></a>
-        <a class="boton boton--claro" href="#juegos"><span class="es">Todos nuestros juegos</span><span class="en">All our games</span><svg aria-hidden="true"><use href="#i-flecha"/></svg></a>
+  <section class="portada" id="inicio" aria-roledescription="carrusel" aria-labelledby="portada-titulo">
+    <p class="oculto" id="portada-titulo"><span class="es">Novedades</span><span class="en">News</span></p>
+
+    <article class="diapo activa" aria-roledescription="noticia" aria-label="1 / 3">
+      <picture>
+        <source media="(max-width: 900px)" srcset="img/timberland/hero-movil.webp">
+        <img class="fondo" src="img/timberland/hero.webp" alt="" width="2400" height="775" fetchpriority="high">
+      </picture>
+      <div class="caja">
+        <span class="chapa"><span class="punto" aria-hidden="true"></span><span class="es">Próximamente en Steam</span><span class="en">Coming soon to Steam</span></span>
+        <h2><img class="logo" src="img/timberland/logo.webp" alt="Timberland" width="960" height="320"></h2>
+        <p class="entradilla">
+          <span class="es">Un pueblo de voxels que solo funciona si tú lo organizas. Reparte trece oficios entre tus aldeanos, encadena talleres, siembra pensando en el invierno y monta la guardia: cuando cae la noche, sale lo que vive fuera.</span>
+          <span class="en">A voxel village that only works if you organize it. Assign thirteen trades to your settlers, chain workshops together, sow with winter in mind, and post a watch: when night falls, something comes out.</span>
+        </p>
+        <div class="acciones">
+          <a class="boton boton--oro" href="https://store.steampowered.com/app/5224900/Timberland/"><svg aria-hidden="true"><use href="#i-corazon"/></svg><span class="es">Añadir a mi lista de deseados</span><span class="en">Add to my wishlist</span></a>
+          <a class="boton boton--claro" href="#juegos"><span class="es">Todos nuestros juegos</span><span class="en">All our games</span><svg aria-hidden="true"><use href="#i-flecha"/></svg></a>
+        </div>
+        <p class="datos"><span class="es">Acceso anticipado · Noviembre de 2026 · PC</span><span class="en">Early Access · November 2026 · PC</span></p>
       </div>
-      <p class="datos"><span class="es">Acceso anticipado · Noviembre de 2026 · PC</span><span class="en">Early Access · November 2026 · PC</span></p>
+    </article>
+
+    <article class="diapo" aria-roledescription="noticia" aria-label="2 / 3">
+      <picture>
+        <source media="(max-width: 900px)" srcset="img/noticias/fourcrownscards-fondo-movil.webp">
+        <img class="fondo" src="img/noticias/fourcrownscards-fondo.webp" alt="" width="1600" height="844" loading="lazy">
+      </picture>
+      <div class="caja con-moviles">
+        <div>
+          <span class="chapa"><span class="punto punto--verde" aria-hidden="true"></span><span class="es">Nuevo juego en Android</span><span class="en">New game on Android</span></span>
+          <h2 class="nombre"><img src="iconos/fourcrownscards.png" alt="" width="192" height="192">Four Crowns: Cards</h2>
+          <p class="entradilla">
+            <span class="es">Estrenamos juego: desliza cartas, gobierna tu dinastía y une la isla de las Cuatro Coronas. Detrás de cada carta está tu reino, y cambia con cada decisión.</span>
+            <span class="en">Our new game is here: swipe cards, rule your dynasty and unite the island of the Four Crowns. Behind every card lies your kingdom, and it changes with every decision.</span>
+          </p>
+          <div class="acciones">
+            <a class="boton boton--azul" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.fourcrownscartas"><svg aria-hidden="true"><use href="#i-play"/></svg>Google Play</a>
+            <a class="boton boton--claro" href="#juegos"><span class="es">Todos nuestros juegos</span><span class="en">All our games</span><svg aria-hidden="true"><use href="#i-flecha"/></svg></a>
+          </div>
+          <p class="datos"><span class="es">Android · Prueba gratis · Seis idiomas</span><span class="en">Android · Free trial · Six languages</span></p>
+        </div>
+        <div class="moviles" aria-hidden="true">
+          <div class="movil movil--atras"><img class="es" src="img/noticias/fourcrownscards-2.webp" alt="" width="520" height="924" loading="lazy"><img class="en" src="img/noticias/fourcrownscards-2-en.webp" alt="" width="520" height="924" loading="lazy"></div>
+          <div class="movil movil--delante"><img class="es" src="img/noticias/fourcrownscards-1.webp" alt="" width="520" height="924" loading="lazy"><img class="en" src="img/noticias/fourcrownscards-1-en.webp" alt="" width="520" height="924" loading="lazy"></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="diapo" aria-roledescription="noticia" aria-label="3 / 3">
+      <picture>
+        <source media="(max-width: 900px)" srcset="img/noticias/minicity-fondo-movil.webp">
+        <img class="fondo" src="img/noticias/minicity-fondo.webp" alt="" width="1600" height="893" loading="lazy">
+      </picture>
+      <div class="caja con-moviles">
+        <div>
+          <span class="chapa"><span class="punto punto--azul" aria-hidden="true"></span><span class="es">Actualización</span><span class="en">Update</span></span>
+          <h2 class="nombre"><img src="iconos/minicity.png" alt="" width="192" height="192">Mini City</h2>
+          <p class="entradilla">
+            <span class="es">Seguimos mejorando Mini City: la versión 1.1 trae correcciones y mejoras, y vienen más. Construye tu ciudad en una isla, del primer barrio a los rascacielos, con puerto, aeropuerto, días y noches.</span>
+            <span class="en">We keep improving Mini City: version 1.1 brings fixes and improvements, with more on the way. Build your city on an island, from the first neighborhood to skyscrapers, with a port, an airport, days and nights.</span>
+          </p>
+          <div class="acciones">
+            <a class="boton boton--azul" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.minicity"><svg aria-hidden="true"><use href="#i-play"/></svg>Google Play</a>
+            <a class="boton boton--claro" href="#juegos"><span class="es">Todos nuestros juegos</span><span class="en">All our games</span><svg aria-hidden="true"><use href="#i-flecha"/></svg></a>
+          </div>
+          <p class="datos"><span class="es">Android · Gratis · Seis idiomas</span><span class="en">Android · Free · Six languages</span></p>
+        </div>
+        <div class="moviles" aria-hidden="true">
+          <div class="movil movil--atras"><img class="es" src="img/noticias/minicity-2.webp" alt="" width="520" height="924" loading="lazy"><img class="en" src="img/noticias/minicity-2-en.webp" alt="" width="520" height="924" loading="lazy"></div>
+          <div class="movil movil--delante"><img class="es" src="img/noticias/minicity-1.webp" alt="" width="520" height="924" loading="lazy"><img class="en" src="img/noticias/minicity-1-en.webp" alt="" width="520" height="924" loading="lazy"></div>
+        </div>
+      </div>
+    </article>
+
+    <div class="mandos">
+      <button type="button" class="flecha flecha--izq" data-paso="-1"><svg aria-hidden="true"><use href="#i-izq"/></svg><span class="oculto"><span class="es">Noticia anterior</span><span class="en">Previous news</span></span></button>
+      <button type="button" class="flecha flecha--der" data-paso="1"><svg aria-hidden="true"><use href="#i-der"/></svg><span class="oculto"><span class="es">Noticia siguiente</span><span class="en">Next news</span></span></button>
+      <div class="puntos">
+        <button type="button" aria-current="true"><span class="raya"></span><span class="oculto"><span class="es">Noticia</span><span class="en">News</span> 1</span></button>
+        <button type="button" aria-current="false"><span class="raya"></span><span class="oculto"><span class="es">Noticia</span><span class="en">News</span> 2</span></button>
+        <button type="button" aria-current="false"><span class="raya"></span><span class="oculto"><span class="es">Noticia</span><span class="en">News</span> 3</span></button>
+      </div>
     </div>
   </section>
 
@@ -494,6 +604,54 @@
   }else{
     piezas.forEach(function(p){p.classList.add('vista')});
   }
+
+  // Portada: las noticias pasan solas cada 5 segundos (paradas con el raton encima, con el teclado dentro o con la
+  // pestana oculta); flechas, puntos, teclas de flecha y deslizar con el dedo. Con movimiento reducido no pasan solas.
+  var portada=document.getElementById('inicio');
+  var diapos=[].slice.call(portada.querySelectorAll('.diapo'));
+  var puntos=[].slice.call(portada.querySelectorAll('.puntos button'));
+  var ahora=0, espera=5000, queda=espera, desde=0, reloj=null, motivos={};
+  var sinAuto=!!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches);
+  if(sinAuto)portada.classList.add('sin-auto');
+  function parada(){for(var k in motivos)if(motivos[k])return true;return sinAuto}
+  function seguir(){clearTimeout(reloj);reloj=null;if(parada())return;desde=Date.now();reloj=setTimeout(function(){ir(ahora+1)},queda)}
+  function parar(motivo){
+    if(reloj){clearTimeout(reloj);reloj=null;queda=Math.max(0,queda-(Date.now()-desde))}
+    motivos[motivo]=true;portada.classList.add('quieta');
+  }
+  function soltar(motivo){motivos[motivo]=false;if(!parada()){portada.classList.remove('quieta');seguir()}}
+  function ir(i){
+    ahora=(i+diapos.length)%diapos.length;
+    diapos.forEach(function(d,j){
+      var si=j===ahora;
+      d.classList.toggle('activa',si);
+      d.inert=!si;
+      if(si)d.removeAttribute('aria-hidden');else d.setAttribute('aria-hidden','true');
+    });
+    puntos.forEach(function(p,j){p.setAttribute('aria-current',j===ahora?'true':'false')});
+    queda=espera;seguir();
+  }
+  portada.querySelectorAll('.flecha').forEach(function(b){b.addEventListener('click',function(){ir(ahora+Number(b.dataset.paso))})});
+  puntos.forEach(function(p,j){p.addEventListener('click',function(){if(j!==ahora)ir(j)})});
+  portada.addEventListener('pointerenter',function(e){if(e.pointerType==='mouse')parar('raton')});
+  portada.addEventListener('pointerleave',function(e){if(e.pointerType==='mouse')soltar('raton')});
+  function conTeclado(el){try{return el.matches(':focus-visible')}catch(e){return true}}
+  portada.addEventListener('focusin',function(e){if(conTeclado(e.target))parar('foco')});
+  portada.addEventListener('focusout',function(e){if(!e.relatedTarget||!portada.contains(e.relatedTarget))soltar('foco')});
+  portada.querySelector('.mandos').addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'){ir(ahora+1);e.preventDefault()}
+    if(e.key==='ArrowLeft'){ir(ahora-1);e.preventDefault()}
+  });
+  document.addEventListener('visibilitychange',function(){if(document.hidden)parar('oculta');else soltar('oculta')});
+  var dedoX=null, dedoY=0;
+  portada.addEventListener('touchstart',function(e){dedoX=e.touches[0].clientX;dedoY=e.touches[0].clientY},{passive:true});
+  portada.addEventListener('touchend',function(e){
+    if(dedoX===null)return;
+    var dx=e.changedTouches[0].clientX-dedoX, dy=e.changedTouches[0].clientY-dedoY;
+    dedoX=null;
+    if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.5)ir(ahora+(dx<0?1:-1));
+  },{passive:true});
+  ir(0);
 
   // Visor de capturas: clic para ampliar, flechas para pasar, Esc para cerrar
   var visor=document.getElementById('visor');
