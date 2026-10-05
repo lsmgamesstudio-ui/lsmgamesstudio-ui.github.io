@@ -46,7 +46,9 @@
   [id]{scroll-margin-top:84px}
   :focus-visible{outline:3px solid var(--oro);outline-offset:3px;border-radius:6px}
   .oculto{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
-  html[data-idioma="es"] .en,html[data-idioma="en"] .es{display:none !important}
+  html:not([data-idioma="es"]) .es,html:not([data-idioma="en"]) .en,html:not([data-idioma="pt"]) .pt,
+  html:not([data-idioma="fr"]) .fr,html:not([data-idioma="de"]) .de,html:not([data-idioma="it"]) .it,
+  html[data-idioma="es"] .no-es{display:none !important}
   .caja{max-width:var(--ancho);margin-inline:auto;padding-inline:var(--margen)}
 
   /* Barra de arriba */
@@ -58,10 +60,15 @@
   .menu{display:flex;gap:4px;margin-left:auto}
   .menu a{font:600 1rem/1 var(--titulos);letter-spacing:.1em;text-transform:uppercase;text-decoration:none;color:var(--suave);padding:10px 12px;border-radius:6px;transition:color .2s}
   .menu a:hover{color:#fff}
-  .idiomas{display:flex;border:1px solid var(--linea-2);border-radius:999px;padding:3px;background:rgba(10,16,25,.4)}
-  .idiomas button{appearance:none;border:0;background:none;color:var(--suave);font:600 .85rem/1 var(--titulos);letter-spacing:.08em;padding:6px 10px;border-radius:999px;cursor:pointer}
-  .idiomas button[aria-pressed="true"]{background:var(--tinta);color:var(--fondo)}
-  @media (max-width:760px){.menu{display:none}.idiomas{margin-left:auto}}
+  .idiomas{display:flex;align-items:center;gap:7px;height:38px;padding-left:12px;border:1px solid var(--linea-2);border-radius:999px;background:rgba(10,16,25,.4);color:var(--suave);transition:border-color .2s}
+  .idiomas:hover{border-color:rgba(255,255,255,.34)}
+  .idiomas:has(select:focus-visible){outline:3px solid var(--oro);outline-offset:3px}
+  .idiomas svg{width:16px;height:16px;flex:none}
+  .idiomas select{appearance:none;-webkit-appearance:none;height:100%;border:0;border-radius:999px;outline:0;cursor:pointer;color:var(--tinta);
+    font:600 .92rem/1 var(--titulos);letter-spacing:.08em;text-transform:uppercase;padding:0 32px 0 0;
+    background:transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23a3b2c4' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round' d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 12px center/12px}
+  .idiomas option{background:var(--panel);color:var(--tinta);text-transform:none}
+  @media (max-width:900px){.menu{display:none}.idiomas{margin-left:auto}}
 
   /* Portada: noticias que pasan solas (Timberland, el juego nuevo, Mini City) */
   .portada{position:relative;display:grid;isolation:isolate;overflow:hidden;background:var(--fondo)}
@@ -248,6 +255,7 @@
   <symbol id="i-hacha" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" transform="rotate(-40 12 12)"><rect x="6" y="3" width="12" height="5.5" rx="1.3"/><path d="M12 8.5V21.5"/></g></symbol>
   <symbol id="i-sol" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></g></symbol>
   <symbol id="i-luna" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></symbol>
+  <symbol id="i-idioma" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.9 5.6 3.9 9s-1.3 6.4-3.9 9c-2.6-2.6-3.9-5.6-3.9-9S9.4 5.6 12 3z"/></g></symbol>
   <symbol id="i-izq" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="m15 5-7 7 7 7"/></symbol>
   <symbol id="i-der" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="m9 5 7 7-7 7"/></symbol>
   <symbol id="i-cerrar" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M6 6l12 12M18 6 6 18"/></symbol>
@@ -261,15 +269,21 @@
   <div class="caja">
     <a class="marca" href="#inicio"><img src="logo.svg" alt="" width="34" height="34">LSM Games Studio</a>
     <nav class="menu" aria-label="Secciones">
-      <a href="#juegos"><span class="es">Juegos</span><span class="en">Games</span></a>
+      <a href="#juegos"><span class="es">Juegos</span><span class="en">Games</span><span class="pt">Jogos</span><span class="fr">Jeux</span><span class="de">Spiele</span><span class="it">Giochi</span></a>
       <a href="#timberland">Timberland</a>
-      <a href="#estudio"><span class="es">Estudio</span><span class="en">Studio</span></a>
-      <a href="#contacto"><span class="es">Contacto</span><span class="en">Contact</span></a>
+      <a href="#estudio"><span class="es">Estudio</span><span class="en">Studio</span><span class="pt">Estúdio</span><span class="fr">Studio</span><span class="de">Studio</span><span class="it">Studio</span></a>
+      <a href="#contacto"><span class="es">Contacto</span><span class="en">Contact</span><span class="pt">Contato</span><span class="fr">Contact</span><span class="de">Kontakt</span><span class="it">Contatti</span></a>
     </nav>
-    <div class="idiomas" role="group" aria-label="Idioma · Language">
-      <button type="button" data-idioma="es" aria-pressed="true" lang="es">ES</button>
-      <button type="button" data-idioma="en" aria-pressed="false" lang="en">EN</button>
-    </div>
+    <label class="idiomas"><svg aria-hidden="true"><use href="#i-idioma"/></svg>
+      <select id="idioma" aria-label="Idioma · Language">
+        <option value="es" lang="es">Español</option>
+        <option value="en" lang="en">English</option>
+        <option value="pt" lang="pt">Português</option>
+        <option value="fr" lang="fr">Français</option>
+        <option value="de" lang="de">Deutsch</option>
+        <option value="it" lang="it">Italiano</option>
+      </select>
+    </label>
   </div>
 </header>
 
@@ -277,7 +291,7 @@
   <h1 class="oculto">LSM Games Studio · Legendary Strategy Makers</h1>
 
   <section class="portada" id="inicio" aria-roledescription="carrusel" aria-labelledby="portada-titulo">
-    <p class="oculto" id="portada-titulo"><span class="es">Novedades</span><span class="en">News</span></p>
+    <p class="oculto" id="portada-titulo"><span class="es">Novedades</span><span class="en">News</span><span class="pt">Novidades</span><span class="fr">Actualités</span><span class="de">Neuigkeiten</span><span class="it">Novità</span></p>
 
     <article class="diapo activa" aria-roledescription="noticia" aria-label="1 / 3">
       <picture>
@@ -285,17 +299,21 @@
         <img class="fondo" src="img/timberland/hero.webp" alt="" width="2400" height="775" fetchpriority="high">
       </picture>
       <div class="caja">
-        <span class="chapa"><span class="punto" aria-hidden="true"></span><span class="es">Próximamente en Steam</span><span class="en">Coming soon to Steam</span></span>
+        <span class="chapa"><span class="punto" aria-hidden="true"></span><span class="es">Próximamente en Steam</span><span class="en">Coming soon to Steam</span><span class="pt">Em breve na Steam</span><span class="fr">Bientôt sur Steam</span><span class="de">Bald auf Steam</span><span class="it">Presto su Steam</span></span>
         <h2><img class="logo" src="img/timberland/logo.webp" alt="Timberland" width="960" height="320"></h2>
         <p class="entradilla">
           <span class="es">Un pueblo de voxels que solo funciona si tú lo organizas. Reparte trece oficios entre tus aldeanos, encadena talleres, siembra pensando en el invierno y monta la guardia: cuando cae la noche, sale lo que vive fuera.</span>
           <span class="en">A voxel village that only works if you organize it. Assign thirteen trades to your settlers, chain workshops together, sow with winter in mind, and post a watch: when night falls, something comes out.</span>
+          <span class="pt">Uma aldeia de voxels que só funciona se você a organizar. Distribua treze ofícios entre seus aldeões, encadeie oficinas, plante pensando no inverno e monte a guarda: quando a noite cai, sai o que vive lá fora.</span>
+          <span class="fr">Un village de voxels qui ne tourne que si tu l'organises. Répartis treize métiers entre tes villageois, enchaîne les ateliers, sème en pensant à l'hiver et monte la garde : quand la nuit tombe, ce qui vit dehors sort.</span>
+          <span class="de">Ein Voxel-Dorf, das nur funktioniert, wenn du es organisierst. Verteile dreizehn Berufe auf deine Siedler, verkette Werkstätten, säe mit Blick auf den Winter und stell Wachen auf: Wenn die Nacht hereinbricht, kommt heraus, was draußen lebt.</span>
+          <span class="it">Un villaggio di voxel che funziona solo se lo organizzi tu. Distribuisci tredici mestieri tra i tuoi abitanti, concatena le botteghe, semina pensando all'inverno e monta la guardia: quando cala la notte, esce ciò che vive là fuori.</span>
         </p>
         <div class="acciones">
-          <a class="boton boton--oro" href="https://store.steampowered.com/app/5224900/Timberland/"><svg aria-hidden="true"><use href="#i-corazon"/></svg><span class="es">Añadir a mi lista de deseados</span><span class="en">Add to my wishlist</span></a>
-          <a class="boton boton--claro" href="#juegos"><span class="es">Todos nuestros juegos</span><span class="en">All our games</span><svg aria-hidden="true"><use href="#i-flecha"/></svg></a>
+          <a class="boton boton--oro" href="https://store.steampowered.com/app/5224900/Timberland/"><svg aria-hidden="true"><use href="#i-corazon"/></svg><span class="es">Añadir a mi lista de deseados</span><span class="en">Add to my wishlist</span><span class="pt">Adicionar à lista de desejos</span><span class="fr">Ajouter à ma liste de souhaits</span><span class="de">Auf meine Wunschliste</span><span class="it">Aggiungi alla lista dei desideri</span></a>
+          <a class="boton boton--claro" href="#juegos"><span class="es">Todos nuestros juegos</span><span class="en">All our games</span><span class="pt">Todos os nossos jogos</span><span class="fr">Tous nos jeux</span><span class="de">Alle unsere Spiele</span><span class="it">Tutti i nostri giochi</span><svg aria-hidden="true"><use href="#i-flecha"/></svg></a>
         </div>
-        <p class="datos"><span class="es">Acceso anticipado · Noviembre de 2026 · PC</span><span class="en">Early Access · November 2026 · PC</span></p>
+        <p class="datos"><span class="es">Acceso anticipado · Noviembre de 2026 · PC</span><span class="en">Early Access · November 2026 · PC</span><span class="pt">Acesso antecipado · Novembro de 2026 · PC</span><span class="fr">Accès anticipé · Novembre 2026 · PC</span><span class="de">Early Access · November 2026 · PC</span><span class="it">Accesso anticipato · Novembre 2026 · PC</span></p>
       </div>
     </article>
 
@@ -306,21 +324,25 @@
       </picture>
       <div class="caja con-moviles">
         <div>
-          <span class="chapa"><span class="punto punto--verde" aria-hidden="true"></span><span class="es">Nuevo juego en Android</span><span class="en">New game on Android</span></span>
+          <span class="chapa"><span class="punto punto--verde" aria-hidden="true"></span><span class="es">Nuevo juego en Android</span><span class="en">New game on Android</span><span class="pt">Novo jogo no Android</span><span class="fr">Nouveau jeu sur Android</span><span class="de">Neues Spiel für Android</span><span class="it">Nuovo gioco su Android</span></span>
           <h2 class="nombre"><img src="iconos/fourcrownscards.png" alt="" width="192" height="192">Four Crowns: Cards</h2>
           <p class="entradilla">
             <span class="es">Estrenamos juego: desliza cartas, gobierna tu dinastía y une la isla de las Cuatro Coronas. Detrás de cada carta está tu reino, y cambia con cada decisión.</span>
             <span class="en">Our new game is here: swipe cards, rule your dynasty and unite the island of the Four Crowns. Behind every card lies your kingdom, and it changes with every decision.</span>
+            <span class="pt">Temos jogo novo: deslize cartas, governe sua dinastia e una a ilha das Quatro Coroas. Atrás de cada carta está seu reino, e ele muda a cada decisão.</span>
+            <span class="fr">Notre nouveau jeu est là : fais glisser des cartes, gouverne ta dynastie et unis l'île des Quatre Couronnes. Derrière chaque carte se trouve ton royaume, et il change à chaque décision.</span>
+            <span class="de">Unser neues Spiel ist da: Wische Karten, regiere deine Dynastie und vereine die Insel der Vier Kronen. Hinter jeder Karte liegt dein Königreich, und es verändert sich mit jeder Entscheidung.</span>
+            <span class="it">Abbiamo un nuovo gioco: scorri le carte, governa la tua dinastia e unisci l'isola delle Quattro Corone. Dietro ogni carta c'è il tuo regno, e cambia a ogni decisione.</span>
           </p>
           <div class="acciones">
             <a class="boton boton--azul" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.fourcrownscartas"><svg aria-hidden="true"><use href="#i-play"/></svg>Google Play</a>
-            <a class="boton boton--claro" href="#juegos"><span class="es">Todos nuestros juegos</span><span class="en">All our games</span><svg aria-hidden="true"><use href="#i-flecha"/></svg></a>
+            <a class="boton boton--claro" href="#juegos"><span class="es">Todos nuestros juegos</span><span class="en">All our games</span><span class="pt">Todos os nossos jogos</span><span class="fr">Tous nos jeux</span><span class="de">Alle unsere Spiele</span><span class="it">Tutti i nostri giochi</span><svg aria-hidden="true"><use href="#i-flecha"/></svg></a>
           </div>
-          <p class="datos"><span class="es">Android · Prueba gratis · Seis idiomas</span><span class="en">Android · Free trial · Six languages</span></p>
+          <p class="datos"><span class="es">Android · Prueba gratis · Seis idiomas</span><span class="en">Android · Free trial · Six languages</span><span class="pt">Android · Teste grátis · Seis idiomas</span><span class="fr">Android · Essai gratuit · Six langues</span><span class="de">Android · Gratis testen · Sechs Sprachen</span><span class="it">Android · Prova gratuita · Sei lingue</span></p>
         </div>
         <div class="moviles" aria-hidden="true">
-          <div class="movil movil--atras"><img class="es" src="img/noticias/fourcrownscards-2.webp" alt="" width="520" height="924" loading="lazy"><img class="en" src="img/noticias/fourcrownscards-2-en.webp" alt="" width="520" height="924" loading="lazy"></div>
-          <div class="movil movil--delante"><img class="es" src="img/noticias/fourcrownscards-1.webp" alt="" width="520" height="924" loading="lazy"><img class="en" src="img/noticias/fourcrownscards-1-en.webp" alt="" width="520" height="924" loading="lazy"></div>
+          <div class="movil movil--atras"><img class="es" src="img/noticias/fourcrownscards-2.webp" alt="" width="520" height="924" loading="lazy"><img class="no-es" src="img/noticias/fourcrownscards-2-en.webp" alt="" width="520" height="924" loading="lazy"></div>
+          <div class="movil movil--delante"><img class="es" src="img/noticias/fourcrownscards-1.webp" alt="" width="520" height="924" loading="lazy"><img class="no-es" src="img/noticias/fourcrownscards-1-en.webp" alt="" width="520" height="924" loading="lazy"></div>
         </div>
       </div>
     </article>
@@ -332,32 +354,36 @@
       </picture>
       <div class="caja con-moviles">
         <div>
-          <span class="chapa"><span class="punto punto--azul" aria-hidden="true"></span><span class="es">Actualización</span><span class="en">Update</span></span>
+          <span class="chapa"><span class="punto punto--azul" aria-hidden="true"></span><span class="es">Actualización</span><span class="en">Update</span><span class="pt">Atualização</span><span class="fr">Mise à jour</span><span class="de">Update</span><span class="it">Aggiornamento</span></span>
           <h2 class="nombre"><img src="iconos/minicity.png" alt="" width="192" height="192">Mini City</h2>
           <p class="entradilla">
             <span class="es">Seguimos mejorando Mini City: la versión 1.1 trae correcciones y mejoras, y vienen más. Construye tu ciudad en una isla, del primer barrio a los rascacielos, con puerto, aeropuerto, días y noches.</span>
             <span class="en">We keep improving Mini City: version 1.1 brings fixes and improvements, with more on the way. Build your city on an island, from the first neighborhood to skyscrapers, with a port, an airport, days and nights.</span>
+            <span class="pt">Seguimos melhorando o Mini City: a versão 1.1 traz correções e melhorias, e vem mais por aí. Construa sua cidade numa ilha, do primeiro bairro aos arranha-céus, com porto, aeroporto, dias e noites.</span>
+            <span class="fr">Nous continuons d'améliorer Mini City : la version 1.1 apporte des corrections et des améliorations, et d'autres arrivent. Construis ta ville sur une île, du premier quartier aux gratte-ciel, avec un port, un aéroport, des jours et des nuits.</span>
+            <span class="de">Wir verbessern Mini City weiter: Version 1.1 bringt Fehlerbehebungen und Verbesserungen, und es kommt noch mehr. Baue deine Stadt auf einer Insel, vom ersten Viertel bis zu den Wolkenkratzern, mit Hafen, Flughafen, Tag und Nacht.</span>
+            <span class="it">Continuiamo a migliorare Mini City: la versione 1.1 porta correzioni e miglioramenti, e altri ne arriveranno. Costruisci la tua città su un'isola, dal primo quartiere ai grattacieli, con porto, aeroporto, giorni e notti.</span>
           </p>
           <div class="acciones">
             <a class="boton boton--azul" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.minicity"><svg aria-hidden="true"><use href="#i-play"/></svg>Google Play</a>
-            <a class="boton boton--claro" href="#juegos"><span class="es">Todos nuestros juegos</span><span class="en">All our games</span><svg aria-hidden="true"><use href="#i-flecha"/></svg></a>
+            <a class="boton boton--claro" href="#juegos"><span class="es">Todos nuestros juegos</span><span class="en">All our games</span><span class="pt">Todos os nossos jogos</span><span class="fr">Tous nos jeux</span><span class="de">Alle unsere Spiele</span><span class="it">Tutti i nostri giochi</span><svg aria-hidden="true"><use href="#i-flecha"/></svg></a>
           </div>
-          <p class="datos"><span class="es">Android · Gratis · Seis idiomas</span><span class="en">Android · Free · Six languages</span></p>
+          <p class="datos"><span class="es">Android · Gratis · Seis idiomas</span><span class="en">Android · Free · Six languages</span><span class="pt">Android · Grátis · Seis idiomas</span><span class="fr">Android · Gratuit · Six langues</span><span class="de">Android · Kostenlos · Sechs Sprachen</span><span class="it">Android · Gratis · Sei lingue</span></p>
         </div>
         <div class="moviles" aria-hidden="true">
-          <div class="movil movil--atras"><img class="es" src="img/noticias/minicity-2.webp" alt="" width="520" height="924" loading="lazy"><img class="en" src="img/noticias/minicity-2-en.webp" alt="" width="520" height="924" loading="lazy"></div>
-          <div class="movil movil--delante"><img class="es" src="img/noticias/minicity-1.webp" alt="" width="520" height="924" loading="lazy"><img class="en" src="img/noticias/minicity-1-en.webp" alt="" width="520" height="924" loading="lazy"></div>
+          <div class="movil movil--atras"><img class="es" src="img/noticias/minicity-2.webp" alt="" width="520" height="924" loading="lazy"><img class="no-es" src="img/noticias/minicity-2-en.webp" alt="" width="520" height="924" loading="lazy"></div>
+          <div class="movil movil--delante"><img class="es" src="img/noticias/minicity-1.webp" alt="" width="520" height="924" loading="lazy"><img class="no-es" src="img/noticias/minicity-1-en.webp" alt="" width="520" height="924" loading="lazy"></div>
         </div>
       </div>
     </article>
 
     <div class="mandos">
-      <button type="button" class="flecha flecha--izq" data-paso="-1"><svg aria-hidden="true"><use href="#i-izq"/></svg><span class="oculto"><span class="es">Noticia anterior</span><span class="en">Previous news</span></span></button>
-      <button type="button" class="flecha flecha--der" data-paso="1"><svg aria-hidden="true"><use href="#i-der"/></svg><span class="oculto"><span class="es">Noticia siguiente</span><span class="en">Next news</span></span></button>
+      <button type="button" class="flecha flecha--izq" data-paso="-1"><svg aria-hidden="true"><use href="#i-izq"/></svg><span class="oculto"><span class="es">Noticia anterior</span><span class="en">Previous news</span><span class="pt">Notícia anterior</span><span class="fr">Actualité précédente</span><span class="de">Vorherige Neuigkeit</span><span class="it">Notizia precedente</span></span></button>
+      <button type="button" class="flecha flecha--der" data-paso="1"><svg aria-hidden="true"><use href="#i-der"/></svg><span class="oculto"><span class="es">Noticia siguiente</span><span class="en">Next news</span><span class="pt">Próxima notícia</span><span class="fr">Actualité suivante</span><span class="de">Nächste Neuigkeit</span><span class="it">Notizia successiva</span></span></button>
       <div class="puntos">
-        <button type="button" aria-current="true"><span class="raya"></span><span class="oculto"><span class="es">Noticia</span><span class="en">News</span> 1</span></button>
-        <button type="button" aria-current="false"><span class="raya"></span><span class="oculto"><span class="es">Noticia</span><span class="en">News</span> 2</span></button>
-        <button type="button" aria-current="false"><span class="raya"></span><span class="oculto"><span class="es">Noticia</span><span class="en">News</span> 3</span></button>
+        <button type="button" aria-current="true"><span class="raya"></span><span class="oculto"><span class="es">Noticia</span><span class="en">News</span><span class="pt">Notícia</span><span class="fr">Actualité</span><span class="de">Neuigkeit</span><span class="it">Notizia</span> 1</span></button>
+        <button type="button" aria-current="false"><span class="raya"></span><span class="oculto"><span class="es">Noticia</span><span class="en">News</span><span class="pt">Notícia</span><span class="fr">Actualité</span><span class="de">Neuigkeit</span><span class="it">Notizia</span> 2</span></button>
+        <button type="button" aria-current="false"><span class="raya"></span><span class="oculto"><span class="es">Noticia</span><span class="en">News</span><span class="pt">Notícia</span><span class="fr">Actualité</span><span class="de">Neuigkeit</span><span class="it">Notizia</span> 3</span></button>
       </div>
     </div>
   </section>
@@ -367,9 +393,9 @@
     <div class="caja">
       <div class="cabeza aparece">
         <div>
-          <p class="antetitulo"><span class="es">Catálogo</span><span class="en">Catalog</span></p>
-          <h2 class="titulo" id="juegos-titulo"><span class="es">Nuestros juegos</span><span class="en">Our games</span></h2>
-          <p class="intro"><span class="es">Estrategia, gestión y algún puzle, para el ordenador y para el móvil.</span><span class="en">Strategy, management and the odd puzzle, for your computer and your phone.</span></p>
+          <p class="antetitulo"><span class="es">Catálogo</span><span class="en">Catalog</span><span class="pt">Catálogo</span><span class="fr">Catalogue</span><span class="de">Katalog</span><span class="it">Catalogo</span></p>
+          <h2 class="titulo" id="juegos-titulo"><span class="es">Nuestros juegos</span><span class="en">Our games</span><span class="pt">Nossos jogos</span><span class="fr">Nos jeux</span><span class="de">Unsere Spiele</span><span class="it">I nostri giochi</span></h2>
+          <p class="intro"><span class="es">Estrategia, gestión y algún puzle, para el ordenador y para el móvil.</span><span class="en">Strategy, management and the odd puzzle, for your computer and your phone.</span><span class="pt">Estratégia, gestão e algum quebra-cabeça, para o computador e para o celular.</span><span class="fr">Stratégie, gestion et quelques puzzles, pour ton ordinateur et ton téléphone.</span><span class="de">Strategie, Aufbau und das eine oder andere Puzzle, für Computer und Handy.</span><span class="it">Strategia, gestione e qualche puzzle, per il computer e per il telefono.</span></p>
         </div>
       </div>
 
@@ -377,77 +403,77 @@
         <article class="juego aparece">
           <a class="arte" href="https://store.steampowered.com/app/5224900/Timberland/" tabindex="-1" aria-hidden="true"><img src="img/juegos/timberland.webp" alt="" width="920" height="430" loading="lazy"></a>
           <div class="cuerpo">
-            <div class="etiquetas"><span class="etiqueta etiqueta--pc">PC · Steam</span><span class="etiqueta etiqueta--nuevo"><span class="es">Próximamente</span><span class="en">Coming soon</span></span></div>
+            <div class="etiquetas"><span class="etiqueta etiqueta--pc">PC · Steam</span><span class="etiqueta etiqueta--nuevo"><span class="es">Próximamente</span><span class="en">Coming soon</span><span class="pt">Em breve</span><span class="fr">Bientôt</span><span class="de">Demnächst</span><span class="it">Presto</span></span></div>
             <h3>Timberland</h3>
-            <p class="genero"><span class="es">Gestión de un pueblo · Voxel</span><span class="en">Village management · Voxel</span></p>
-            <p class="resumen"><span class="es">Reparte trece oficios, encadena talleres, siembra pensando en el invierno y monta la guardia para cuando caiga la noche.</span><span class="en">Assign thirteen trades, chain workshops together, sow with winter in mind and post a watch for when night falls.</span></p>
-            <div class="pies"><a class="boton boton--oro boton--peq" href="https://store.steampowered.com/app/5224900/Timberland/"><svg aria-hidden="true"><use href="#i-corazon"/></svg>Steam</a><a href="#timberland"><span class="es">Capturas</span><span class="en">Screenshots</span></a></div>
+            <p class="genero"><span class="es">Gestión de un pueblo · Voxel</span><span class="en">Village management · Voxel</span><span class="pt">Gestão de aldeia · Voxel</span><span class="fr">Gestion de village · Voxel</span><span class="de">Dorfaufbau · Voxel</span><span class="it">Gestione di un villaggio · Voxel</span></p>
+            <p class="resumen"><span class="es">Reparte trece oficios, encadena talleres, siembra pensando en el invierno y monta la guardia para cuando caiga la noche.</span><span class="en">Assign thirteen trades, chain workshops together, sow with winter in mind and post a watch for when night falls.</span><span class="pt">Distribua treze ofícios, encadeie oficinas, plante pensando no inverno e monte a guarda para quando a noite cair.</span><span class="fr">Répartis treize métiers, enchaîne les ateliers, sème en pensant à l'hiver et monte la garde pour la tombée de la nuit.</span><span class="de">Verteile dreizehn Berufe, verkette Werkstätten, säe mit Blick auf den Winter und stell Wachen für die Nacht auf.</span><span class="it">Distribuisci tredici mestieri, concatena le botteghe, semina pensando all'inverno e monta la guardia per quando cala la notte.</span></p>
+            <div class="pies"><a class="boton boton--oro boton--peq" href="https://store.steampowered.com/app/5224900/Timberland/"><svg aria-hidden="true"><use href="#i-corazon"/></svg>Steam</a><a href="#timberland"><span class="es">Capturas</span><span class="en">Screenshots</span><span class="pt">Capturas de tela</span><span class="fr">Captures d'écran</span><span class="de">Screenshots</span><span class="it">Screenshot</span></a></div>
           </div>
         </article>
 
         <article class="juego aparece">
-          <a class="arte" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.fourcrowns" tabindex="-1" aria-hidden="true"><img class="es" src="img/juegos/fourcrowns.webp" alt="" width="1024" height="500" loading="lazy"><img class="en" src="img/juegos/fourcrowns-en.webp" alt="" width="1024" height="500" loading="lazy"></a>
+          <a class="arte" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.fourcrowns" tabindex="-1" aria-hidden="true"><img class="es" src="img/juegos/fourcrowns.webp" alt="" width="1024" height="500" loading="lazy"><img class="no-es" src="img/juegos/fourcrowns-en.webp" alt="" width="1024" height="500" loading="lazy"></a>
           <div class="cuerpo">
             <div class="etiquetas"><span class="etiqueta etiqueta--android">Android</span></div>
             <h3>Four Crowns</h3>
-            <p class="genero"><span class="es">Estrategia 4X por turnos</span><span class="en">Turn-based 4X strategy</span></p>
-            <p class="resumen"><span class="es">Cuatro reinos, una isla y una sola corona. Explora, funda ciudades, investiga y elige entre la paz y la guerra, con una mano.</span><span class="en">Four kingdoms, one island, one crown. Explore, found cities, research and choose between peace and war, one-handed.</span></p>
-            <div class="pies"><a class="boton boton--azul boton--peq" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.fourcrowns"><svg aria-hidden="true"><use href="#i-play"/></svg>Google Play</a><a href="fourcrowns/" data-en-href="fourcrowns/#en"><span class="es">Privacidad</span><span class="en">Privacy</span></a></div>
+            <p class="genero"><span class="es">Estrategia 4X por turnos</span><span class="en">Turn-based 4X strategy</span><span class="pt">Estratégia 4X por turnos</span><span class="fr">Stratégie 4X au tour par tour</span><span class="de">Rundenbasierte 4X-Strategie</span><span class="it">Strategia 4X a turni</span></p>
+            <p class="resumen"><span class="es">Cuatro reinos, una isla y una sola corona. Explora, funda ciudades, investiga y elige entre la paz y la guerra, con una mano.</span><span class="en">Four kingdoms, one island, one crown. Explore, found cities, research and choose between peace and war, one-handed.</span><span class="pt">Quatro reinos, uma ilha e uma só coroa. Explore, funde cidades, pesquise e escolha entre a paz e a guerra, com uma mão.</span><span class="fr">Quatre royaumes, une île et une seule couronne. Explore, fonde des villes, fais des recherches et choisis entre la paix et la guerre, d'une seule main.</span><span class="de">Vier Königreiche, eine Insel und nur eine Krone. Erkunde, gründe Städte, forsche und wähle zwischen Frieden und Krieg, mit einer Hand.</span><span class="it">Quattro regni, un'isola e una sola corona. Esplora, fonda città, fai ricerca e scegli tra la pace e la guerra, con una mano sola.</span></p>
+            <div class="pies"><a class="boton boton--azul boton--peq" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.fourcrowns"><svg aria-hidden="true"><use href="#i-play"/></svg>Google Play</a><a href="fourcrowns/" data-en-href="fourcrowns/#en"><span class="es">Privacidad</span><span class="en">Privacy</span><span class="pt">Privacidade</span><span class="fr">Confidentialité</span><span class="de">Datenschutz</span><span class="it">Privacy</span></a></div>
           </div>
         </article>
 
         <article class="juego aparece">
-          <a class="arte" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.fourcrownscartas" tabindex="-1" aria-hidden="true"><img class="es" src="img/juegos/fourcrownscards.webp" alt="" width="1024" height="500" loading="lazy"><img class="en" src="img/juegos/fourcrownscards-en.webp" alt="" width="1024" height="500" loading="lazy"></a>
+          <a class="arte" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.fourcrownscartas" tabindex="-1" aria-hidden="true"><img class="es" src="img/juegos/fourcrownscards.webp" alt="" width="1024" height="500" loading="lazy"><img class="no-es" src="img/juegos/fourcrownscards-en.webp" alt="" width="1024" height="500" loading="lazy"></a>
           <div class="cuerpo">
             <div class="etiquetas"><span class="etiqueta etiqueta--android">Android</span></div>
             <h3>Four Crowns: Cards</h3>
-            <p class="genero"><span class="es">Cartas y decisiones</span><span class="en">Cards &amp; decisions</span></p>
-            <p class="resumen"><span class="es">Desliza cartas, gobierna tu dinastía y une la isla de las Cuatro Coronas. Detrás de cada carta, tu reino cambia.</span><span class="en">Swipe cards, rule your dynasty and unite the island of the Four Crowns. Behind every card, your kingdom changes.</span></p>
-            <div class="pies"><a class="boton boton--azul boton--peq" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.fourcrownscartas"><svg aria-hidden="true"><use href="#i-play"/></svg>Google Play</a><a href="fourcrownscards/" data-en-href="fourcrownscards/#en"><span class="es">Privacidad</span><span class="en">Privacy</span></a></div>
+            <p class="genero"><span class="es">Cartas y decisiones</span><span class="en">Cards &amp; decisions</span><span class="pt">Cartas e decisões</span><span class="fr">Cartes et décisions</span><span class="de">Karten und Entscheidungen</span><span class="it">Carte e decisioni</span></p>
+            <p class="resumen"><span class="es">Desliza cartas, gobierna tu dinastía y une la isla de las Cuatro Coronas. Detrás de cada carta, tu reino cambia.</span><span class="en">Swipe cards, rule your dynasty and unite the island of the Four Crowns. Behind every card, your kingdom changes.</span><span class="pt">Deslize cartas, governe sua dinastia e una a ilha das Quatro Coroas. Atrás de cada carta, seu reino muda.</span><span class="fr">Fais glisser des cartes, gouverne ta dynastie et unis l'île des Quatre Couronnes. Derrière chaque carte, ton royaume change.</span><span class="de">Wische Karten, regiere deine Dynastie und vereine die Insel der Vier Kronen. Hinter jeder Karte verändert sich dein Königreich.</span><span class="it">Scorri le carte, governa la tua dinastia e unisci l'isola delle Quattro Corone. Dietro ogni carta, il tuo regno cambia.</span></p>
+            <div class="pies"><a class="boton boton--azul boton--peq" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.fourcrownscartas"><svg aria-hidden="true"><use href="#i-play"/></svg>Google Play</a><a href="fourcrownscards/" data-en-href="fourcrownscards/#en"><span class="es">Privacidad</span><span class="en">Privacy</span><span class="pt">Privacidade</span><span class="fr">Confidentialité</span><span class="de">Datenschutz</span><span class="it">Privacy</span></a></div>
           </div>
         </article>
 
         <article class="juego aparece">
-          <a class="arte" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.hearthfall" tabindex="-1" aria-hidden="true"><img class="es" src="img/juegos/hearthfall.webp" alt="" width="1024" height="500" loading="lazy"><img class="en" src="img/juegos/hearthfall-en.webp" alt="" width="1024" height="500" loading="lazy"></a>
+          <a class="arte" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.hearthfall" tabindex="-1" aria-hidden="true"><img class="es" src="img/juegos/hearthfall.webp" alt="" width="1024" height="500" loading="lazy"><img class="no-es" src="img/juegos/hearthfall-en.webp" alt="" width="1024" height="500" loading="lazy"></a>
           <div class="cuerpo">
             <div class="etiquetas"><span class="etiqueta etiqueta--android">Android</span></div>
             <h3>Hearthfall</h3>
-            <p class="genero"><span class="es">Construcción de poblados</span><span class="en">Village builder</span></p>
-            <p class="resumen"><span class="es">Funda un poblado en un bosque que no perdona y aguanta cuatro años de estaciones. Cada otoño sale la Luna Roja.</span><span class="en">Found a village in an unforgiving forest and last four years of seasons. Every autumn, the Red Moon rises.</span></p>
-            <div class="pies"><a class="boton boton--azul boton--peq" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.hearthfall"><svg aria-hidden="true"><use href="#i-play"/></svg>Google Play</a><a href="hearthfall/" data-en-href="hearthfall/#en"><span class="es">Privacidad</span><span class="en">Privacy</span></a></div>
+            <p class="genero"><span class="es">Construcción de poblados</span><span class="en">Village builder</span><span class="pt">Construção de aldeias</span><span class="fr">Construction de village</span><span class="de">Dorfaufbau</span><span class="it">Costruzione di villaggi</span></p>
+            <p class="resumen"><span class="es">Funda un poblado en un bosque que no perdona y aguanta cuatro años de estaciones. Cada otoño sale la Luna Roja.</span><span class="en">Found a village in an unforgiving forest and last four years of seasons. Every autumn, the Red Moon rises.</span><span class="pt">Funde uma aldeia num bosque que não perdoa e aguente quatro anos de estações. Todo outono surge a Lua Vermelha.</span><span class="fr">Fonde un village dans une forêt impitoyable et tiens quatre années de saisons. Chaque automne, la Lune Rouge se lève.</span><span class="de">Gründe ein Dorf in einem gnadenlosen Wald und überstehe vier Jahre voller Jahreszeiten. Jeden Herbst steigt der Blutmond auf.</span><span class="it">Fonda un villaggio in una foresta che non perdona e resisti a quattro anni di stagioni. Ogni autunno sorge la Luna Rossa.</span></p>
+            <div class="pies"><a class="boton boton--azul boton--peq" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.hearthfall"><svg aria-hidden="true"><use href="#i-play"/></svg>Google Play</a><a href="hearthfall/" data-en-href="hearthfall/#en"><span class="es">Privacidad</span><span class="en">Privacy</span><span class="pt">Privacidade</span><span class="fr">Confidentialité</span><span class="de">Datenschutz</span><span class="it">Privacy</span></a></div>
           </div>
         </article>
 
         <article class="juego aparece">
-          <a class="arte" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio" tabindex="-1" aria-hidden="true"><img class="es" src="img/juegos/hearthandrampart.webp" alt="" width="1024" height="500" loading="lazy"><img class="en" src="img/juegos/hearthandrampart-en.webp" alt="" width="1024" height="500" loading="lazy"></a>
+          <a class="arte" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio" tabindex="-1" aria-hidden="true"><img class="es" src="img/juegos/hearthandrampart.webp" alt="" width="1024" height="500" loading="lazy"><img class="no-es" src="img/juegos/hearthandrampart-en.webp" alt="" width="1024" height="500" loading="lazy"></a>
           <div class="cuerpo">
             <div class="etiquetas"><span class="etiqueta etiqueta--android">Android</span></div>
             <h3>Hearth &amp; Rampart</h3>
-            <p class="genero"><span class="es">Estrategia y defensa medieval</span><span class="en">Medieval strategy &amp; defense</span></p>
-            <p class="resumen"><span class="es">Construye, organiza y defiende tu aldea en un mundo 3D de bloques, y resiste asedios cada vez más duros.</span><span class="en">Build, organize and defend your village in a 3D block world, and hold out against ever-tougher sieges.</span></p>
-            <div class="pies"><a class="boton boton--azul boton--peq" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio"><svg aria-hidden="true"><use href="#i-play"/></svg>Google Play</a><a href="hearthandrampart/" data-en-href="hearthandrampart/#en"><span class="es">Privacidad</span><span class="en">Privacy</span></a></div>
+            <p class="genero"><span class="es">Estrategia y defensa medieval</span><span class="en">Medieval strategy &amp; defense</span><span class="pt">Estratégia e defesa medieval</span><span class="fr">Stratégie et défense médiévale</span><span class="de">Mittelalterliche Strategie und Verteidigung</span><span class="it">Strategia e difesa medievale</span></p>
+            <p class="resumen"><span class="es">Construye, organiza y defiende tu aldea en un mundo 3D de bloques, y resiste asedios cada vez más duros.</span><span class="en">Build, organize and defend your village in a 3D block world, and hold out against ever-tougher sieges.</span><span class="pt">Construa, organize e defenda sua aldeia num mundo 3D de blocos, e resista a cercos cada vez mais duros.</span><span class="fr">Construis, organise et défends ton village dans un monde 3D de blocs, et résiste à des sièges de plus en plus durs.</span><span class="de">Baue, organisiere und verteidige dein Dorf in einer 3D-Blockwelt und halte immer härteren Belagerungen stand.</span><span class="it">Costruisci, organizza e difendi il tuo villaggio in un mondo 3D a blocchi, e resisti ad assedi sempre più duri.</span></p>
+            <div class="pies"><a class="boton boton--azul boton--peq" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio"><svg aria-hidden="true"><use href="#i-play"/></svg>Google Play</a><a href="hearthandrampart/" data-en-href="hearthandrampart/#en"><span class="es">Privacidad</span><span class="en">Privacy</span><span class="pt">Privacidade</span><span class="fr">Confidentialité</span><span class="de">Datenschutz</span><span class="it">Privacy</span></a></div>
           </div>
         </article>
 
         <article class="juego aparece">
-          <a class="arte" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.minicity" tabindex="-1" aria-hidden="true"><img class="es" src="img/juegos/minicity.webp" alt="" width="1024" height="500" loading="lazy"><img class="en" src="img/juegos/minicity-en.webp" alt="" width="1024" height="500" loading="lazy"></a>
+          <a class="arte" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.minicity" tabindex="-1" aria-hidden="true"><img class="es" src="img/juegos/minicity.webp" alt="" width="1024" height="500" loading="lazy"><img class="no-es" src="img/juegos/minicity-en.webp" alt="" width="1024" height="500" loading="lazy"></a>
           <div class="cuerpo">
             <div class="etiquetas"><span class="etiqueta etiqueta--android">Android</span></div>
             <h3>Mini City</h3>
-            <p class="genero"><span class="es">Construcción de ciudades</span><span class="en">City builder</span></p>
-            <p class="resumen"><span class="es">Traza calles, levanta barrios y haz que tus vecinos vivan felices sin que las cuentas acaben en números rojos.</span><span class="en">Lay out streets, raise neighborhoods and keep your citizens happy without the books ending up in the red.</span></p>
-            <div class="pies"><a class="boton boton--azul boton--peq" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.minicity"><svg aria-hidden="true"><use href="#i-play"/></svg>Google Play</a><a href="minicity/" data-en-href="minicity/#en"><span class="es">Privacidad</span><span class="en">Privacy</span></a></div>
+            <p class="genero"><span class="es">Construcción de ciudades</span><span class="en">City builder</span><span class="pt">Construção de cidades</span><span class="fr">Construction de ville</span><span class="de">Städtebau</span><span class="it">Costruzione di città</span></p>
+            <p class="resumen"><span class="es">Traza calles, levanta barrios y haz que tus vecinos vivan felices sin que las cuentas acaben en números rojos.</span><span class="en">Lay out streets, raise neighborhoods and keep your citizens happy without the books ending up in the red.</span><span class="pt">Trace ruas, levante bairros e deixe os moradores felizes sem que as contas fiquem no vermelho.</span><span class="fr">Trace des rues, bâtis des quartiers et rends tes habitants heureux sans que les comptes passent dans le rouge.</span><span class="de">Lege Straßen an, errichte Viertel und mach deine Bürger glücklich, ohne dass die Kasse ins Minus rutscht.</span><span class="it">Traccia strade, costruisci quartieri e rendi felici i tuoi cittadini senza che i conti finiscano in rosso.</span></p>
+            <div class="pies"><a class="boton boton--azul boton--peq" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.minicity"><svg aria-hidden="true"><use href="#i-play"/></svg>Google Play</a><a href="minicity/" data-en-href="minicity/#en"><span class="es">Privacidad</span><span class="en">Privacy</span><span class="pt">Privacidade</span><span class="fr">Confidentialité</span><span class="de">Datenschutz</span><span class="it">Privacy</span></a></div>
           </div>
         </article>
 
         <article class="juego aparece">
-          <a class="arte" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.popiblocks" tabindex="-1" aria-hidden="true"><img class="es" src="img/juegos/popiblocks.webp" alt="" width="1024" height="500" loading="lazy"><img class="en" src="img/juegos/popiblocks-en.webp" alt="" width="1024" height="500" loading="lazy"></a>
+          <a class="arte" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.popiblocks" tabindex="-1" aria-hidden="true"><img class="es" src="img/juegos/popiblocks.webp" alt="" width="1024" height="500" loading="lazy"><img class="no-es" src="img/juegos/popiblocks-en.webp" alt="" width="1024" height="500" loading="lazy"></a>
           <div class="cuerpo">
             <div class="etiquetas"><span class="etiqueta etiqueta--android">Android</span></div>
             <h3>PopiBlocks</h3>
-            <p class="genero"><span class="es">Puzle de bloques</span><span class="en">Block puzzle</span></p>
-            <p class="resumen"><span class="es">La pila no para de subir: intercambia bloques, junta tres y encadena combos. Cien niveles en diez mundos.</span><span class="en">The stack keeps rising: swap blocks, match three and chain combos. A hundred levels across ten worlds.</span></p>
-            <div class="pies"><a class="boton boton--azul boton--peq" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.popiblocks"><svg aria-hidden="true"><use href="#i-play"/></svg>Google Play</a><a href="popiblocks/" data-en-href="popiblocks/#en"><span class="es">Privacidad</span><span class="en">Privacy</span></a></div>
+            <p class="genero"><span class="es">Puzle de bloques</span><span class="en">Block puzzle</span><span class="pt">Quebra-cabeça de blocos</span><span class="fr">Puzzle de blocs</span><span class="de">Block-Puzzle</span><span class="it">Puzzle a blocchi</span></p>
+            <p class="resumen"><span class="es">La pila no para de subir: intercambia bloques, junta tres y encadena combos. Cien niveles en diez mundos.</span><span class="en">The stack keeps rising: swap blocks, match three and chain combos. A hundred levels across ten worlds.</span><span class="pt">A pilha não para de subir: troque blocos, junte três e encadeie combos. Cem níveis em dez mundos.</span><span class="fr">La pile ne cesse de monter : échange des blocs, aligne-en trois et enchaîne les combos. Cent niveaux dans dix mondes.</span><span class="de">Der Stapel wächst unaufhörlich: Tausche Blöcke, bilde Dreierreihen und baue Ketten. Hundert Level in zehn Welten.</span><span class="it">La pila non smette di salire: scambia blocchi, unisci tre e concatena combo. Cento livelli in dieci mondi.</span></p>
+            <div class="pies"><a class="boton boton--azul boton--peq" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.popiblocks"><svg aria-hidden="true"><use href="#i-play"/></svg>Google Play</a><a href="popiblocks/" data-en-href="popiblocks/#en"><span class="es">Privacidad</span><span class="en">Privacy</span><span class="pt">Privacidade</span><span class="fr">Confidentialité</span><span class="de">Datenschutz</span><span class="it">Privacy</span></a></div>
           </div>
         </article>
       </div>
@@ -460,37 +486,41 @@
       <div class="cabeza aparece">
         <div>
           <p class="antetitulo">Timberland · PC · Steam</p>
-          <h2 class="titulo" id="timberland-titulo"><span class="es">Un pueblo que no se construye: se organiza</span><span class="en">A village you don't build. You organize it</span></h2>
+          <h2 class="titulo" id="timberland-titulo"><span class="es">Un pueblo que no se construye: se organiza</span><span class="en">A village you don't build. You organize it</span><span class="pt">Uma aldeia que não se constrói: se organiza</span><span class="fr">Un village qu'on ne construit pas : on l'organise</span><span class="de">Ein Dorf, das man nicht baut, sondern organisiert</span><span class="it">Un villaggio che non si costruisce: si organizza</span></h2>
           <p class="intro">
             <span class="es">Empiezas con un puñado de aldeanos en un valle de voxels que nadie ha pisado. Aquí no se colocan edificios y aparecen solos: se reparten oficios. Lo que sale de sus manos es lo que hace posible el oficio siguiente, y así hasta que el valle es un pueblo.</span>
             <span class="en">You start with a handful of settlers in a voxel valley nobody has walked before. You don't place buildings and watch them appear: you assign trades. What comes off their hands is what makes the next trade possible, until the valley becomes a village.</span>
+            <span class="pt">Você começa com um punhado de aldeões num vale de voxels onde ninguém pisou. Aqui não se colocam edifícios que aparecem sozinhos: distribuem-se ofícios. O que sai das mãos deles torna possível o ofício seguinte, até que o vale vira uma aldeia.</span>
+            <span class="fr">Tu commences avec une poignée de villageois dans une vallée de voxels où personne n'a jamais mis les pieds. Ici, on ne pose pas des bâtiments qui apparaissent tout seuls : on répartit des métiers. Ce qui sort de leurs mains rend possible le métier suivant, jusqu'à ce que la vallée devienne un village.</span>
+            <span class="de">Du beginnst mit einer Handvoll Siedler in einem Voxel-Tal, das noch niemand betreten hat. Hier setzt man keine Gebäude, die von selbst entstehen: Man verteilt Berufe. Was aus ihren Händen kommt, macht den nächsten Beruf möglich, bis aus dem Tal ein Dorf wird.</span>
+            <span class="it">Inizi con una manciata di abitanti in una valle di voxel che nessuno ha mai calpestato. Qui non si piazzano edifici che compaiono da soli: si distribuiscono mestieri. Ciò che esce dalle loro mani rende possibile il mestiere successivo, finché la valle diventa un villaggio.</span>
           </p>
         </div>
-        <a class="boton boton--oro" href="https://store.steampowered.com/app/5224900/Timberland/"><svg aria-hidden="true"><use href="#i-corazon"/></svg><span class="es">Ver en Steam</span><span class="en">View on Steam</span></a>
+        <a class="boton boton--oro" href="https://store.steampowered.com/app/5224900/Timberland/"><svg aria-hidden="true"><use href="#i-corazon"/></svg><span class="es">Ver en Steam</span><span class="en">View on Steam</span><span class="pt">Ver na Steam</span><span class="fr">Voir sur Steam</span><span class="de">Auf Steam ansehen</span><span class="it">Vedi su Steam</span></a>
       </div>
 
       <div class="galeria aparece" id="galeria">
-        <button type="button" data-grande="img/timberland/primavera.webp"><img src="img/timberland/primavera-p.webp" alt="" width="800" height="450" loading="lazy"><span class="pie"><span class="es">Primavera junto al río</span><span class="en">Spring by the river</span></span></button>
-        <button type="button" data-grande="img/timberland/otono.webp"><img src="img/timberland/otono-p.webp" alt="" width="800" height="450" loading="lazy"><span class="pie"><span class="es">Otoño, con lluvia</span><span class="en">Autumn rain</span></span></button>
-        <button type="button" data-grande="img/timberland/invierno.webp"><img src="img/timberland/invierno-p.webp" alt="" width="800" height="450" loading="lazy"><span class="pie"><span class="es">Noche de invierno</span><span class="en">A winter night</span></span></button>
-        <button type="button" data-grande="img/timberland/incursion.webp"><img src="img/timberland/incursion-p.webp" alt="" width="800" height="450" loading="lazy"><span class="pie"><span class="es">La guardia en la muralla</span><span class="en">The watch on the wall</span></span></button>
+        <button type="button" data-grande="img/timberland/primavera.webp"><img src="img/timberland/primavera-p.webp" alt="" width="800" height="450" loading="lazy"><span class="pie"><span class="es">Primavera junto al río</span><span class="en">Spring by the river</span><span class="pt">Primavera junto ao rio</span><span class="fr">Printemps au bord de la rivière</span><span class="de">Frühling am Fluss</span><span class="it">Primavera lungo il fiume</span></span></button>
+        <button type="button" data-grande="img/timberland/otono.webp"><img src="img/timberland/otono-p.webp" alt="" width="800" height="450" loading="lazy"><span class="pie"><span class="es">Otoño, con lluvia</span><span class="en">Autumn rain</span><span class="pt">Outono, com chuva</span><span class="fr">Automne sous la pluie</span><span class="de">Herbst im Regen</span><span class="it">Autunno, con la pioggia</span></span></button>
+        <button type="button" data-grande="img/timberland/invierno.webp"><img src="img/timberland/invierno-p.webp" alt="" width="800" height="450" loading="lazy"><span class="pie"><span class="es">Noche de invierno</span><span class="en">A winter night</span><span class="pt">Noite de inverno</span><span class="fr">Nuit d'hiver</span><span class="de">Winternacht</span><span class="it">Notte d'inverno</span></span></button>
+        <button type="button" data-grande="img/timberland/incursion.webp"><img src="img/timberland/incursion-p.webp" alt="" width="800" height="450" loading="lazy"><span class="pie"><span class="es">La guardia en la muralla</span><span class="en">The watch on the wall</span><span class="pt">A guarda na muralha</span><span class="fr">La garde sur la muraille</span><span class="de">Die Wache auf der Mauer</span><span class="it">La guardia sulle mura</span></span></button>
       </div>
 
       <div class="rasgos">
         <article class="rasgo aparece">
           <svg aria-hidden="true"><use href="#i-hacha"/></svg>
-          <h3><span class="es">Trece oficios que dependen unos de otros</span><span class="en">Thirteen trades that depend on each other</span></h3>
-          <p><span class="es">El tronco que trae el leñador lo convierte el carpintero en tablas; con tablas se levanta el taller donde el herrero funde el mineral que sube el minero.</span><span class="en">The log the woodcutter brings becomes planks at the carpenter's bench; those planks raise the workshop where the blacksmith smelts the ore the miner hauls up.</span></p>
+          <h3><span class="es">Trece oficios que dependen unos de otros</span><span class="en">Thirteen trades that depend on each other</span><span class="pt">Treze ofícios que dependem uns dos outros</span><span class="fr">Treize métiers qui dépendent les uns des autres</span><span class="de">Dreizehn Berufe, die voneinander abhängen</span><span class="it">Tredici mestieri che dipendono l'uno dall'altro</span></h3>
+          <p><span class="es">El tronco que trae el leñador lo convierte el carpintero en tablas; con tablas se levanta el taller donde el herrero funde el mineral que sube el minero.</span><span class="en">The log the woodcutter brings becomes planks at the carpenter's bench; those planks raise the workshop where the blacksmith smelts the ore the miner hauls up.</span><span class="pt">O tronco que o lenhador traz vira tábuas nas mãos do carpinteiro; com as tábuas se ergue a oficina onde o ferreiro funde o minério que o mineiro traz.</span><span class="fr">Le tronc qu'apporte le bûcheron, le charpentier le transforme en planches ; avec ces planches s'élève l'atelier où le forgeron fond le minerai que remonte le mineur.</span><span class="de">Den Stamm, den der Holzfäller bringt, verarbeitet der Zimmermann zu Brettern; mit den Brettern entsteht die Werkstatt, in der der Schmied das Erz schmilzt, das der Bergmann heraufholt.</span><span class="it">Il tronco che porta il taglialegna, il falegname lo trasforma in assi; con le assi si alza la bottega dove il fabbro fonde il minerale che il minatore porta su.</span></p>
         </article>
         <article class="rasgo aparece">
           <svg aria-hidden="true"><use href="#i-sol"/></svg>
-          <h3><span class="es">Un año que se nota</span><span class="en">A year you can feel</span></h3>
-          <p><span class="es">En primavera brotan las hortalizas, en verano el campo va solo, en otoño solo avanza lo que el granjero atiende en persona y en invierno se vive de lo que guardaste.</span><span class="en">Vegetables sprout in spring, summer crops grow on their own, in autumn only what the farmer tends in person makes progress, and winter runs on what you stored.</span></p>
+          <h3><span class="es">Un año que se nota</span><span class="en">A year you can feel</span><span class="pt">Um ano que se sente</span><span class="fr">Une année qui se ressent</span><span class="de">Ein Jahr, das man spürt</span><span class="it">Un anno che si sente</span></h3>
+          <p><span class="es">En primavera brotan las hortalizas, en verano el campo va solo, en otoño solo avanza lo que el granjero atiende en persona y en invierno se vive de lo que guardaste.</span><span class="en">Vegetables sprout in spring, summer crops grow on their own, in autumn only what the farmer tends in person makes progress, and winter runs on what you stored.</span><span class="pt">Na primavera brotam as hortaliças, no verão o campo cresce sozinho, no outono só avança o que o agricultor cuida pessoalmente e no inverno se vive do que você guardou.</span><span class="fr">Au printemps, les légumes poussent ; l'été, les champs vont tout seuls ; à l'automne, seul avance ce dont le fermier s'occupe en personne, et l'hiver, on vit de ce que tu as mis de côté.</span><span class="de">Im Frühling sprießt das Gemüse, im Sommer wächst das Feld von allein, im Herbst kommt nur voran, worum sich der Bauer selbst kümmert, und im Winter lebt man von dem, was du eingelagert hast.</span><span class="it">In primavera spuntano gli ortaggi, in estate il campo va da solo, in autunno avanza solo ciò che il contadino cura di persona e in inverno si vive di quello che hai messo da parte.</span></p>
         </article>
         <article class="rasgo aparece">
           <svg aria-hidden="true"><use href="#i-luna"/></svg>
-          <h3><span class="es">De noche sale lo de fuera</span><span class="en">Night brings company</span></h3>
-          <p><span class="es">Cuando se pone el sol aparece lo que vive más allá de la niebla. Marca puestos de guardia, pon a un soldado a patrullar y a un arquero donde cubra.</span><span class="en">When the sun goes down, whatever lives past the fog comes out. Mark guard posts, set a soldier patrolling and an archer where it counts.</span></p>
+          <h3><span class="es">De noche sale lo de fuera</span><span class="en">Night brings company</span><span class="pt">À noite sai o que vive lá fora</span><span class="fr">La nuit, ce qui vit dehors sort</span><span class="de">Nachts kommt, was draußen lebt</span><span class="it">Di notte esce ciò che sta fuori</span></h3>
+          <p><span class="es">Cuando se pone el sol aparece lo que vive más allá de la niebla. Marca puestos de guardia, pon a un soldado a patrullar y a un arquero donde cubra.</span><span class="en">When the sun goes down, whatever lives past the fog comes out. Mark guard posts, set a soldier patrolling and an archer where it counts.</span><span class="pt">Quando o sol se põe, aparece o que vive além da névoa. Marque postos de guarda, ponha um soldado para patrulhar e um arqueiro onde ele cubra.</span><span class="fr">Quand le soleil se couche, ce qui vit au-delà de la brume apparaît. Place des postes de garde, mets un soldat en patrouille et un archer là où il couvre.</span><span class="de">Wenn die Sonne untergeht, zeigt sich, was jenseits des Nebels lebt. Markiere Wachposten, schick einen Soldaten auf Patrouille und stell einen Bogenschützen dorthin, wo er deckt.</span><span class="it">Quando tramonta il sole, compare ciò che vive oltre la nebbia. Segna i posti di guardia, metti un soldato di pattuglia e un arciere dove copre.</span></p>
         </article>
       </div>
     </div>
@@ -504,14 +534,14 @@
         <figcaption>Legendary Strategy Makers</figcaption>
       </figure>
       <div class="aparece">
-        <p class="antetitulo"><span class="es">El estudio</span><span class="en">The studio</span></p>
-        <h2 class="titulo" id="estudio-titulo"><span class="es">Pueblos que organizar, reinos que defender</span><span class="en">Villages to organize, kingdoms to defend</span></h2>
-        <p><span class="es"><strong>LSM Games Studio</strong> es un estudio pequeño e independiente. Hacemos juegos de estrategia y gestión: pueblos que salen adelante por cómo los organizas, ciudades que hay que cuadrar y reinos que defender. De ahí las siglas: <strong>Legendary Strategy Makers</strong>.</span><span class="en"><strong>LSM Games Studio</strong> is a small, independent studio. We make strategy and management games: villages that thrive on how you organize them, cities that have to balance and kingdoms to defend. Hence the name: <strong>Legendary Strategy Makers</strong>.</span></p>
-        <p><span class="es">Preferimos ajustar nuestros juegos con quien los juega. Si tienes una idea o encuentras un fallo, nos encantará leerte.</span><span class="en">We'd rather tune our games with the people who play them. If you have an idea or run into a bug, we'd love to hear from you.</span></p>
+        <p class="antetitulo"><span class="es">El estudio</span><span class="en">The studio</span><span class="pt">O estúdio</span><span class="fr">Le studio</span><span class="de">Das Studio</span><span class="it">Lo studio</span></p>
+        <h2 class="titulo" id="estudio-titulo"><span class="es">Pueblos que organizar, reinos que defender</span><span class="en">Villages to organize, kingdoms to defend</span><span class="pt">Aldeias para organizar, reinos para defender</span><span class="fr">Des villages à organiser, des royaumes à défendre</span><span class="de">Dörfer zum Organisieren, Königreiche zum Verteidigen</span><span class="it">Villaggi da organizzare, regni da difendere</span></h2>
+        <p><span class="es"><strong>LSM Games Studio</strong> es un estudio pequeño e independiente. Hacemos juegos de estrategia y gestión: pueblos que salen adelante por cómo los organizas, ciudades que hay que cuadrar y reinos que defender. De ahí las siglas: <strong>Legendary Strategy Makers</strong>.</span><span class="en"><strong>LSM Games Studio</strong> is a small, independent studio. We make strategy and management games: villages that thrive on how you organize them, cities that have to balance and kingdoms to defend. Hence the name: <strong>Legendary Strategy Makers</strong>.</span><span class="pt"><strong>LSM Games Studio</strong> é um estúdio pequeno e independente. Fazemos jogos de estratégia e gestão: aldeias que prosperam pela forma como você as organiza, cidades que precisam fechar as contas e reinos para defender. Daí a sigla: <strong>Legendary Strategy Makers</strong>.</span><span class="fr"><strong>LSM Games Studio</strong> est un petit studio indépendant. Nous faisons des jeux de stratégie et de gestion : des villages qui prospèrent selon la façon dont tu les organises, des villes dont il faut équilibrer les comptes et des royaumes à défendre. D'où le sigle : <strong>Legendary Strategy Makers</strong>.</span><span class="de"><strong>LSM Games Studio</strong> ist ein kleines, unabhängiges Studio. Wir machen Strategie- und Aufbauspiele: Dörfer, die davon leben, wie du sie organisierst, Städte, deren Kasse stimmen muss, und Königreiche, die verteidigt werden wollen. Daher der Name: <strong>Legendary Strategy Makers</strong>.</span><span class="it"><strong>LSM Games Studio</strong> è uno studio piccolo e indipendente. Facciamo giochi di strategia e gestione: villaggi che crescono in base a come li organizzi, città con i conti da far quadrare e regni da difendere. Da qui la sigla: <strong>Legendary Strategy Makers</strong>.</span></p>
+        <p><span class="es">Preferimos ajustar nuestros juegos con quien los juega. Si tienes una idea o encuentras un fallo, nos encantará leerte.</span><span class="en">We'd rather tune our games with the people who play them. If you have an idea or run into a bug, we'd love to hear from you.</span><span class="pt">Preferimos ajustar nossos jogos com quem os joga. Se você tiver uma ideia ou encontrar um erro, vamos adorar ler.</span><span class="fr">Nous préférons peaufiner nos jeux avec ceux qui y jouent. Si tu as une idée ou si tu trouves un bug, on sera ravis de te lire.</span><span class="de">Wir feilen unsere Spiele am liebsten mit denen, die sie spielen. Wenn du eine Idee hast oder einen Fehler findest, freuen wir uns, von dir zu hören.</span><span class="it">Preferiamo rifinire i nostri giochi insieme a chi ci gioca. Se hai un'idea o trovi un bug, ci farà piacere leggerti.</span></p>
 
         <div class="contacto" id="contacto">
-          <h3><span class="es">Contacto</span><span class="en">Contact</span></h3>
-          <p><span class="es">Prensa, creadores de contenido, ideas o fallos: escríbenos o síguenos.</span><span class="en">Press, content creators, ideas or bugs: write to us or follow along.</span></p>
+          <h3><span class="es">Contacto</span><span class="en">Contact</span><span class="pt">Contato</span><span class="fr">Contact</span><span class="de">Kontakt</span><span class="it">Contatti</span></h3>
+          <p><span class="es">Prensa, creadores de contenido, ideas o fallos: escríbenos o síguenos.</span><span class="en">Press, content creators, ideas or bugs: write to us or follow along.</span><span class="pt">Imprensa, criadores de conteúdo, ideias ou erros: escreva para nós ou siga a gente.</span><span class="fr">Presse, créateurs de contenu, idées ou bugs : écris-nous ou suis-nous.</span><span class="de">Presse, Content Creator, Ideen oder Fehler: Schreib uns oder folge uns.</span><span class="it">Stampa, creatori di contenuti, idee o bug: scrivici o seguici.</span></p>
           <div class="acciones">
             <a class="boton boton--claro boton--peq correo" href="mailto:lsmgamesstudio@gmail.com"><svg aria-hidden="true"><use href="#i-correo"/></svg>lsmgamesstudio@gmail.com</a>
             <div class="redes">
@@ -535,14 +565,14 @@
     </div>
     <nav aria-label="Enlaces">
       <div>
-        <h4><span class="es">Tiendas</span><span class="en">Stores</span></h4>
+        <h4><span class="es">Tiendas</span><span class="en">Stores</span><span class="pt">Lojas</span><span class="fr">Boutiques</span><span class="de">Shops</span><span class="it">Negozi</span></h4>
         <ul>
           <li><a href="steam/">Steam</a></li>
           <li><a href="android/">Google Play</a></li>
         </ul>
       </div>
       <div>
-        <h4><span class="es">Privacidad</span><span class="en">Privacy</span></h4>
+        <h4><span class="es">Privacidad</span><span class="en">Privacy</span><span class="pt">Privacidade</span><span class="fr">Confidentialité</span><span class="de">Datenschutz</span><span class="it">Privacy</span></h4>
         <ul>
           <li><a href="fourcrowns/" data-en-href="fourcrowns/#en">Four Crowns</a></li>
           <li><a href="fourcrownscards/" data-en-href="fourcrownscards/#en">Four Crowns: Cards</a></li>
@@ -568,25 +598,33 @@
   var raiz=document.documentElement;
   raiz.classList.add('js');
 
-  // Idioma: el que se eligio la ultima vez; si no, el del navegador (espanol o, si no, ingles)
-  var titulos={es:'LSM Games Studio · Juegos de estrategia y gestión',en:'LSM Games Studio · Strategy and management games'};
+  // Idioma: el que se eligio la ultima vez; si no, el del navegador (si no es ninguno de los seis, ingles).
+  // Las politicas de privacidad estan en espanol e ingles: en los demas idiomas se abre la inglesa.
+  var IDIOMAS=['es','en','pt','fr','de','it'];
+  var titulos={es:'LSM Games Studio · Juegos de estrategia y gestión',en:'LSM Games Studio · Strategy and management games',
+    pt:'LSM Games Studio · Jogos de estratégia e gestão',fr:'LSM Games Studio · Jeux de stratégie et de gestion',
+    de:'LSM Games Studio · Strategie- und Aufbauspiele',it:'LSM Games Studio · Giochi di strategia e gestione'};
+  var selector=document.getElementById('idioma');
   function leer(){try{return localStorage.getItem('idioma')}catch(e){return null}}
   function guardar(i){try{localStorage.setItem('idioma',i)}catch(e){}}
   function poner(idioma){
     raiz.dataset.idioma=idioma;
     raiz.lang=idioma;
     document.title=titulos[idioma];
-    document.querySelectorAll('.idiomas button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.idioma===idioma?'true':'false')});
+    selector.value=idioma;
     document.querySelectorAll('[data-en-href]').forEach(function(a){
       if(!a.dataset.esHref)a.dataset.esHref=a.getAttribute('href');
-      a.setAttribute('href',idioma==='en'?a.dataset.enHref:a.dataset.esHref);
+      a.setAttribute('href',idioma==='es'?a.dataset.esHref:a.dataset.enHref);
     });
   }
   var elegido=leer();
-  poner(elegido==='es'||elegido==='en'?elegido:((navigator.language||'es').toLowerCase().indexOf('es')===0?'es':'en'));
-  document.querySelectorAll('.idiomas button').forEach(function(b){
-    b.addEventListener('click',function(){poner(b.dataset.idioma);guardar(b.dataset.idioma)});
-  });
+  function delNavegador(){
+    var lista=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||'en'];
+    for(var i=0;i<lista.length;i++){var c=String(lista[i]).slice(0,2).toLowerCase();if(IDIOMAS.indexOf(c)>=0)return c}
+    return 'en';
+  }
+  poner(IDIOMAS.indexOf(elegido)>=0?elegido:delNavegador());
+  selector.addEventListener('change',function(){poner(selector.value);guardar(selector.value)});
 
   // La barra se vuelve opaca al bajar
   var barra=document.getElementById('barra');
