@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>LSM Games Studio · Juegos de estrategia y gestión</title>
-<meta name="description" content="LSM Games Studio (Legendary Strategy Makers): juegos de estrategia y gestión para PC y Android. Timberland, ya a la venta en Steam en acceso anticipado.">
+<meta name="description" content="LSM Games Studio (Legendary Strategy Makers): juegos de estrategia, gestión y puzles para PC, Mac, Android e iOS. Timberland, ya a la venta en Steam en acceso anticipado.">
 <meta name="theme-color" content="#0a1019">
 <link rel="icon" type="image/svg+xml" href="logo.svg">
 <link rel="apple-touch-icon" href="logo_180.png">
@@ -12,7 +12,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="LSM Games Studio">
 <meta property="og:title" content="LSM Games Studio · Legendary Strategy Makers">
-<meta property="og:description" content="Juegos de estrategia y gestión para PC y Android. Timberland, ya a la venta en Steam.">
+<meta property="og:description" content="Juegos de estrategia, gestión y puzles para PC, Mac, Android e iOS. Timberland, ya a la venta en Steam.">
 <meta property="og:url" content="https://lsmgamesstudio-ui.github.io/">
 <meta property="og:image" content="https://lsmgamesstudio-ui.github.io/img/compartir.jpg">
 <meta property="og:image:width" content="1200">
@@ -175,6 +175,15 @@
   .rasgo h3{margin:14px 0 8px;font:800 1.55rem/1.1 var(--titulos);color:#fff}
   .rasgo p{margin:0;color:var(--suave)}
   @media (max-width:800px){.rasgos{grid-template-columns:1fr}}
+  .cambios{margin-top:clamp(44px,6vw,64px);padding:clamp(22px,3vw,32px);border-radius:var(--radio);background:var(--panel);border:1px solid var(--linea)}
+  .cambios h3{margin:0 0 16px;font:800 1.6rem/1.1 var(--titulos);text-transform:uppercase;color:#fff}
+  .cambios ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+  .cambios li{display:grid;grid-template-columns:7.5em 1fr;gap:16px;color:var(--suave)}
+  .cambios .fecha{font:600 .95rem/1.7 var(--titulos);letter-spacing:.1em;text-transform:uppercase;color:var(--oro)}
+  .cambios-pie{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px 24px;margin-top:22px;padding-top:20px;border-top:1px solid var(--linea)}
+  .cambios-pie p{margin:0;color:var(--tinta)}
+  .cambios-pie .acciones{margin-top:0}
+  @media (max-width:600px){.cambios li{grid-template-columns:1fr;gap:2px}}
 
   /* Catalogo */
   .juegos{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:20px}
@@ -332,11 +341,42 @@
           <a class="boton boton--oro" href="https://store.steampowered.com/app/5224900/Timberland/" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-carro"/></svg><span class="es">Comprar en Steam</span><span class="en">Buy on Steam</span><span class="pt">Comprar na Steam</span><span class="fr">Acheter sur Steam</span><span class="de">Auf Steam kaufen</span><span class="it">Acquista su Steam</span></a>
           <a class="boton boton--claro" href="#juegos"><span class="es">Todos nuestros juegos</span><span class="en">All our games</span><span class="pt">Todos os nossos jogos</span><span class="fr">Tous nos jeux</span><span class="de">Alle unsere Spiele</span><span class="it">Tutti i nostri giochi</span><svg aria-hidden="true"><use href="#i-flecha"/></svg></a>
         </div>
-        <p class="datos"><span class="es">Acceso anticipado · Desde el 3 de noviembre de 2026 · PC y Mac · Demo gratis</span><span class="en">Early Access · Since 3 November 2026 · PC &amp; Mac · Free demo</span><span class="pt">Acesso antecipado · Desde 3 de novembro de 2026 · PC e Mac · Demo grátis</span><span class="fr">Accès anticipé · Depuis le 3 novembre 2026 · PC et Mac · Démo gratuite</span><span class="de">Early Access · Seit 3. November 2026 · PC &amp; Mac · Kostenlose Demo</span><span class="it">Accesso anticipato · Dal 3 novembre 2026 · PC e Mac · Demo gratuita</span></p>
+        <p class="datos"><span class="es">Acceso anticipado · PC y Mac · 8 idiomas · Demo gratis</span><span class="en">Early Access · PC &amp; Mac · 8 languages · Free demo</span><span class="pt">Acesso antecipado · PC e Mac · 8 idiomas · Demo grátis</span><span class="fr">Accès anticipé · PC et Mac · 8 langues · Démo gratuite</span><span class="de">Early Access · PC &amp; Mac · 8 Sprachen · Kostenlose Demo</span><span class="it">Accesso anticipato · PC e Mac · 8 lingue · Demo gratuita</span></p>
       </div>
     </article>
 
     <article class="diapo" aria-roledescription="noticia" aria-label="2 / 6">
+      <picture>
+        <source media="(max-width: 900px)" srcset="img/noticias/minicity-fondo-movil.webp">
+        <img class="fondo" src="img/noticias/minicity-fondo.webp" alt="" width="1600" height="844" loading="lazy">
+      </picture>
+      <div class="caja con-moviles">
+        <div>
+          <span class="chapa"><span class="punto punto--azul" aria-hidden="true"></span><span class="es">Nueva actualización en Android</span><span class="en">New update on Android</span><span class="pt">Nova atualização no Android</span><span class="fr">Nouvelle mise à jour sur Android</span><span class="de">Neues Update für Android</span><span class="it">Nuovo aggiornamento su Android</span></span>
+          <h2 class="nombre"><img src="iconos/minicity.png" alt="" width="192" height="192">Mini City</h2>
+          <p class="entradilla">
+            <span class="es">Ponte al volante: toca cualquier coche para pasear por tu ciudad o hacer de taxista. Además, objetivos con premio que te guían, un comienzo más tranquilo y, en diciembre, tu ciudad se viste de Navidad.</span>
+            <span class="en">Get behind the wheel: tap any car to cruise around your city or drive a taxi. Plus goals with rewards to guide you, a calmer start and, in December, your city dresses up for Christmas.</span>
+            <span class="pt">Pegue o volante: toque em qualquer carro para passear pela sua cidade ou ser taxista. E ainda objetivos com prêmio para te guiar, um começo mais tranquilo e, em dezembro, sua cidade se enfeita para o Natal.</span>
+            <span class="fr">Prends le volant : touche n'importe quelle voiture pour te balader dans ta ville ou jouer au taxi. Et aussi des objectifs récompensés pour te guider, un début plus tranquille et, en décembre, ta ville se pare pour Noël.</span>
+            <span class="de">Setz dich ans Steuer: Tippe auf ein Auto, um durch deine Stadt zu fahren oder Taxi zu spielen. Dazu Ziele mit Belohnung, ein ruhigerer Start, und im Dezember schmückt sich deine Stadt für Weihnachten.</span>
+            <span class="it">Mettiti al volante: tocca un'auto qualsiasi per girare la tua città o fare il tassista. In più obiettivi con premio che ti guidano, un inizio più tranquillo e, a dicembre, la tua città si veste a festa per Natale.</span>
+          </p>
+          <div class="acciones">
+            <a class="boton boton--azul" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.minicity&amp;referrer=utm_source%3Dweb%26utm_medium%3Dweb%26utm_campaign%3Dsitio" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-play"/></svg>Google Play</a>
+            <a class="boton boton--claro" href="https://apps.apple.com/app/id6821879606" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-apple"/></svg>App Store</a>
+            <a class="boton boton--claro" href="#juegos"><span class="es">Todos nuestros juegos</span><span class="en">All our games</span><span class="pt">Todos os nossos jogos</span><span class="fr">Tous nos jeux</span><span class="de">Alle unsere Spiele</span><span class="it">Tutti i nostri giochi</span><svg aria-hidden="true"><use href="#i-flecha"/></svg></a>
+          </div>
+          <p class="datos"><span class="es">Android · iOS · Gratis · Construcción de ciudades</span><span class="en">Android · iOS · Free · City builder</span><span class="pt">Android · iOS · Grátis · Construção de cidades</span><span class="fr">Android · iOS · Gratuit · City-builder</span><span class="de">Android · iOS · Kostenlos · Städtebau</span><span class="it">Android · iOS · Gratis · Costruzione di città</span></p>
+        </div>
+        <div class="moviles" aria-hidden="true">
+          <div class="movil movil--atras"><img class="es" src="img/noticias/minicity-1.webp" alt="" width="520" height="924" loading="lazy"><img class="no-es" src="img/noticias/minicity-1-en.webp" alt="" width="520" height="924" loading="lazy"></div>
+          <div class="movil movil--delante"><img class="es" src="img/noticias/minicity-coche.webp" alt="" width="520" height="924" loading="lazy"><img class="no-es" src="img/noticias/minicity-coche-en.webp" alt="" width="520" height="924" loading="lazy"></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="diapo" aria-roledescription="noticia" aria-label="3 / 6">
       <picture>
         <source media="(max-width: 900px)" srcset="img/noticias/tallerrecuerdos-fondo-movil.webp">
         <img class="fondo" src="img/noticias/tallerrecuerdos-fondo.webp" alt="" width="1600" height="844" loading="lazy">
@@ -366,7 +406,7 @@
       </div>
     </article>
 
-    <article class="diapo" aria-roledescription="noticia" aria-label="3 / 6">
+    <article class="diapo" aria-roledescription="noticia" aria-label="4 / 6">
       <picture>
         <source media="(max-width: 900px)" srcset="img/noticias/peekaboopals-fondo-movil.webp">
         <img class="fondo" src="img/noticias/peekaboopals-fondo.webp" alt="" width="1600" height="844" loading="lazy">
@@ -396,7 +436,7 @@
       </div>
     </article>
 
-    <article class="diapo" aria-roledescription="noticia" aria-label="4 / 6">
+    <article class="diapo" aria-roledescription="noticia" aria-label="5 / 6">
       <picture>
         <source media="(max-width: 900px)" srcset="img/noticias/minifarmmerge-fondo-movil.webp">
         <img class="fondo" src="img/noticias/minifarmmerge-fondo.webp" alt="" width="1600" height="844" loading="lazy">
@@ -426,7 +466,7 @@
       </div>
     </article>
 
-    <article class="diapo" aria-roledescription="noticia" aria-label="5 / 6">
+    <article class="diapo" aria-roledescription="noticia" aria-label="6 / 6">
       <picture>
         <source media="(max-width: 900px)" srcset="img/noticias/minivac-fondo-movil.webp">
         <img class="fondo" src="img/noticias/minivac-fondo.webp" alt="" width="1600" height="844" loading="lazy">
@@ -456,36 +496,7 @@
       </div>
     </article>
 
-    <article class="diapo" aria-roledescription="noticia" aria-label="6 / 6">
-      <picture>
-        <source media="(max-width: 900px)" srcset="img/noticias/minicity-fondo-movil.webp">
-        <img class="fondo" src="img/noticias/minicity-fondo.webp" alt="" width="1600" height="844" loading="lazy">
-      </picture>
-      <div class="caja con-moviles">
-        <div>
-          <span class="chapa"><span class="punto punto--azul" aria-hidden="true"></span><span class="es">Gran actualización</span><span class="en">Big update</span><span class="pt">Grande atualização</span><span class="fr">Grosse mise à jour</span><span class="de">Großes Update</span><span class="it">Grande aggiornamento</span></span>
-          <h2 class="nombre"><img src="iconos/minicity.png" alt="" width="192" height="192">Mini City</h2>
-          <p class="entradilla">
-            <span class="es">Mini City crece: ahora hasta el nivel 30, con más de 20 edificios nuevos (zoo, acuario, castillo, ópera, puerto espacial y grandes maravillas), 50 diseños nuevos, globos sobre la ciudad y metro y autopista contra los atascos.</span>
-            <span class="en">Mini City keeps growing: now up to level 30, with over 20 new buildings (zoo, aquarium, castle, opera house, spaceport and great wonders), 50 new designs, hot-air balloons over the city, and a metro and highway to beat traffic.</span>
-            <span class="pt">O Mini City cresce: agora até o nível 30, com mais de 20 prédios novos (zoológico, aquário, castelo, ópera, porto espacial e grandes maravilhas), 50 visuais novos, balões sobre a cidade e metrô e rodovia contra o trânsito.</span>
-            <span class="fr">Mini City s'agrandit : jusqu'au niveau 30, avec plus de 20 nouveaux bâtiments (zoo, aquarium, château, opéra, port spatial et grandes merveilles), 50 nouveaux styles, des montgolfières au-dessus de la ville, un métro et une autoroute contre les bouchons.</span>
-            <span class="de">Mini City wächst: jetzt bis Stufe 30, mit über 20 neuen Gebäuden (Zoo, Aquarium, Burg, Oper, Raumhafen und große Wunder), 50 neuen Designs, Heißluftballons über der Stadt sowie U-Bahn und Autobahn gegen Staus.</span>
-            <span class="it">Mini City cresce: ora fino al livello 30, con oltre 20 nuovi edifici (zoo, acquario, castello, opera, spazioporto e grandi meraviglie), 50 nuovi stili, mongolfiere sulla città e metropolitana e autostrada contro il traffico.</span>
-          </p>
-          <div class="acciones">
-            <a class="boton boton--azul" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.minicity&amp;referrer=utm_source%3Dweb%26utm_medium%3Dweb%26utm_campaign%3Dsitio" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-play"/></svg>Google Play</a>
-            <a class="boton boton--claro" href="https://apps.apple.com/app/id6821879606" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-apple"/></svg>App Store</a>
-            <a class="boton boton--claro" href="#juegos"><span class="es">Todos nuestros juegos</span><span class="en">All our games</span><span class="pt">Todos os nossos jogos</span><span class="fr">Tous nos jeux</span><span class="de">Alle unsere Spiele</span><span class="it">Tutti i nostri giochi</span><svg aria-hidden="true"><use href="#i-flecha"/></svg></a>
-          </div>
-          <p class="datos"><span class="es">Android · iOS · Gratis · Nivel 30</span><span class="en">Android · iOS · Free · Level 30</span><span class="pt">Android · iOS · Grátis · Nível 30</span><span class="fr">Android · iOS · Gratuit · Niveau 30</span><span class="de">Android · iOS · Kostenlos · Stufe 30</span><span class="it">Android · iOS · Gratis · Livello 30</span></p>
-        </div>
-        <div class="moviles" aria-hidden="true">
-          <div class="movil movil--atras"><img class="es" src="img/noticias/minicity-2.webp" alt="" width="520" height="924" loading="lazy"><img class="no-es" src="img/noticias/minicity-2-en.webp" alt="" width="520" height="924" loading="lazy"></div>
-          <div class="movil movil--delante"><img class="es" src="img/noticias/minicity-1.webp" alt="" width="520" height="924" loading="lazy"><img class="no-es" src="img/noticias/minicity-1-en.webp" alt="" width="520" height="924" loading="lazy"></div>
-        </div>
-      </div>
-    </article>
+    
 
     <div class="mandos">
       <button type="button" class="flecha flecha--izq" data-paso="-1"><svg aria-hidden="true"><use href="#i-izq"/></svg><span class="oculto"><span class="es">Noticia anterior</span><span class="en">Previous news</span><span class="pt">Notícia anterior</span><span class="fr">Actualité précédente</span><span class="de">Vorherige Neuigkeit</span><span class="it">Notizia precedente</span></span></button>
@@ -511,7 +522,7 @@
           <h2 class="titulo" id="juegos-titulo"><span class="es">Nuestros juegos</span><span class="en">Our games</span><span class="pt">Nossos jogos</span><span class="fr">Nos jeux</span><span class="de">Unsere Spiele</span><span class="it">I nostri giochi</span></h2>
           <p class="intro"><span class="es">Estrategia, gestión y algún puzle, para el ordenador y para el móvil.</span><span class="en">Strategy, management and the odd puzzle, for your computer and your phone.</span><span class="pt">Estratégia, gestão e algum quebra-cabeça, para o computador e para o celular.</span><span class="fr">Stratégie, gestion et quelques puzzles, pour ton ordinateur et ton téléphone.</span><span class="de">Strategie, Aufbau und das eine oder andere Puzzle, für Computer und Handy.</span><span class="it">Strategia, gestione e qualche puzzle, per il computer e per il telefono.</span></p>
           <div class="filtros" role="group" aria-label="Plataforma"><button type="button" data-filtro="todos" aria-pressed="true"><span class="es">Todos</span><span class="en">All</span><span class="pt">Todos</span><span class="fr">Tous</span><span class="de">Alle</span><span class="it">Tutti</span></button><button type="button" data-filtro="pc" aria-pressed="false">PC</button><button type="button" data-filtro="android" aria-pressed="false">Android</button><button type="button" data-filtro="ios" aria-pressed="false">iOS</button></div>
-          <p class="aviso-ios"><span class="es">Mini City y Mini City Jam ya están en la App Store; los que pone «Próximamente» llegarán pronto.</span><span class="en">Mini City and Mini City Jam are already on the App Store; the ones marked «Coming soon» will follow soon.</span><span class="pt">Mini City e Mini City Jam já estão na App Store; os que dizem «Em breve» chegarão em breve.</span><span class="fr">Mini City et Mini City Jam sont déjà sur l'App Store ; ceux marqués « Bientôt » arriveront prochainement.</span><span class="de">Mini City und Mini City Jam sind schon im App Store; die mit «Demnächst» folgen bald.</span><span class="it">Mini City e Mini City Jam sono già sull'App Store; quelli con «Prossimamente» arriveranno presto.</span></p>
+          <p class="aviso-ios"><span class="es">Mini City y Mini City Jam ya están en la App Store. El resto, de momento, solo en Android.</span><span class="en">Mini City and Mini City Jam are on the App Store. The rest are Android-only for now.</span><span class="pt">Mini City e Mini City Jam já estão na App Store. Os outros, por enquanto, só no Android.</span><span class="fr">Mini City et Mini City Jam sont sur l'App Store. Les autres, pour l'instant, seulement sur Android.</span><span class="de">Mini City und Mini City Jam gibt es im App Store. Die anderen vorerst nur für Android.</span><span class="it">Mini City e Mini City Jam sono sull'App Store. Gli altri, per ora, solo su Android.</span></p>
         </div>
       </div>
 
@@ -519,7 +530,7 @@
         <article class="juego aparece" data-plat="pc">
           <a class="arte" href="https://store.steampowered.com/app/5224900/Timberland/" tabindex="-1" aria-hidden="true" target="_blank" rel="noopener"><img src="img/juegos/timberland.webp" alt="" width="920" height="430" loading="lazy"></a>
           <div class="cuerpo">
-            <div class="etiquetas"><span class="etiqueta etiqueta--pc">PC · Steam</span><span class="etiqueta etiqueta--nuevo"><span class="es">Ya a la venta</span><span class="en">Out now</span><span class="pt">Já à venda</span><span class="fr">Disponible</span><span class="de">Jetzt erhältlich</span><span class="it">Disponibile</span></span></div>
+            <div class="etiquetas"><span class="etiqueta etiqueta--pc">PC · Mac · Steam</span><span class="etiqueta etiqueta--nuevo"><span class="es">Ya a la venta</span><span class="en">Out now</span><span class="pt">Já à venda</span><span class="fr">Disponible</span><span class="de">Jetzt erhältlich</span><span class="it">Disponibile</span></span></div>
             <h3>Timberland</h3>
             <p class="genero"><span class="es">Gestión de un pueblo · Voxel</span><span class="en">Village management · Voxel</span><span class="pt">Gestão de aldeia · Voxel</span><span class="fr">Gestion de village · Voxel</span><span class="de">Dorfaufbau · Voxel</span><span class="it">Gestione di un villaggio · Voxel</span></p>
             <p class="resumen"><span class="es">Reparte trece oficios, encadena talleres, siembra pensando en el invierno y monta la guardia para cuando caiga la noche.</span><span class="en">Assign thirteen trades, chain workshops together, sow with winter in mind and post a watch for when night falls.</span><span class="pt">Distribua treze ofícios, encadeie oficinas, plante pensando no inverno e monte a guarda para quando a noite cair.</span><span class="fr">Répartis treize métiers, enchaîne les ateliers, sème en pensant à l'hiver et monte la garde pour la tombée de la nuit.</span><span class="de">Verteile dreizehn Berufe, verkette Werkstätten, säe mit Blick auf den Winter und stell Wachen für die Nacht auf.</span><span class="it">Distribuisci tredici mestieri, concatena le botteghe, semina pensando all'inverno e monta la guardia per quando cala la notte.</span></p>
@@ -538,14 +549,14 @@
           </div>
         </article>
 
-        <article class="juego aparece" data-plat="android ios">
+        <article class="juego aparece" data-plat="android">
           <span class="arte" aria-hidden="true"><img class="es" src="img/juegos/tallerrecuerdos.webp" alt="" width="1024" height="500" loading="lazy"><img class="no-es" src="img/juegos/tallerrecuerdos-en.webp" alt="" width="1024" height="500" loading="lazy"></span>
           <div class="cuerpo">
-            <div class="etiquetas"><span class="etiqueta etiqueta--android">Android</span><span class="etiqueta etiqueta--ios">iOS</span></div>
+            <div class="etiquetas"><span class="etiqueta etiqueta--android">Android</span></div>
             <h3><span class="es">El taller de los recuerdos</span><span class="en">The Memory Workshop</span><span class="pt">O Ateliê das Memórias</span><span class="fr">L’Atelier des souvenirs</span><span class="de">Die Erinnerungswerkstatt</span><span class="it">La bottega dei ricordi</span></h3>
             <p class="genero"><span class="es">Puzle de gemas con historia</span><span class="en">Story-driven gem puzzle</span><span class="pt">Quebra-cabeça de joias com história</span><span class="fr">Puzzle de gemmes narratif</span><span class="de">Edelstein-Puzzle mit Geschichte</span><span class="it">Puzzle di gemme con una storia</span></p>
             <p class="resumen"><span class="es">Una historia que se lee como un libro y se desbloquea jugando. Heredas el taller de joyería de tu abuela Elena: junta gemas para reparar las joyas de sus clientes y cada nivel te abre un recuerdo nuevo, una página del álbum y, al final, el siguiente capítulo.</span><span class="en">A story that reads like a book and unlocks as you play. You inherit your grandmother Elena's jewelry workshop: match gems to repair her customers' jewels, and every level opens a new memory, a page of the album and, in the end, the next chapter.</span><span class="pt">Uma história que se lê como um livro e se desbloqueia jogando. Você herda a joalheria da sua avó Elena: junte joias para consertar as peças dos clientes, e cada nível abre uma nova lembrança, uma página do álbum e, no fim, o próximo capítulo.</span><span class="fr">Une histoire qui se lit comme un livre et se débloque en jouant. Tu hérites de l'atelier de bijouterie de ta grand-mère Elena : associe des gemmes pour réparer les bijoux de ses clients, et chaque niveau t'ouvre un nouveau souvenir, une page de l'album et, à la fin, le chapitre suivant.</span><span class="de">Eine Geschichte, die sich wie ein Buch liest und beim Spielen freischaltet. Du erbst die Schmuckwerkstatt deiner Großmutter Elena: Kombiniere Edelsteine, um den Schmuck ihrer Kunden zu reparieren, und jedes Level öffnet dir eine neue Erinnerung, eine Seite im Album und am Ende das nächste Kapitel.</span><span class="it">Una storia che si legge come un libro e si sblocca giocando. Erediti la bottega orafa di tua nonna Elena: unisci le gemme per riparare i gioielli dei suoi clienti e ogni livello ti apre un nuovo ricordo, una pagina dell'album e, alla fine, il capitolo successivo.</span></p>
-            <div class="pies"><a class="boton boton--azul boton--peq" data-tienda="android" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.tallerrecuerdos&amp;referrer=utm_source%3Dweb%26utm_medium%3Dweb%26utm_campaign%3Dsitio" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-play"/></svg>Google Play</a><span class="boton boton--peq boton--pronto" data-tienda="ios" aria-disabled="true"><svg aria-hidden="true"><use href="#i-apple"/></svg>App Store <small><span class="es">· Próximamente</span><span class="en">· Coming soon</span><span class="pt">· Em breve</span><span class="fr">· Bientôt</span><span class="de">· Demnächst</span><span class="it">· Prossimamente</span></small></span><a href="memoryworkshop/" data-en-href="memoryworkshop/#en"><span class="es">Privacidad</span><span class="en">Privacy</span><span class="pt">Privacidade</span><span class="fr">Confidentialité</span><span class="de">Datenschutz</span><span class="it">Privacy</span></a></div>
+            <div class="pies"><a class="boton boton--azul boton--peq" data-tienda="android" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.tallerrecuerdos&amp;referrer=utm_source%3Dweb%26utm_medium%3Dweb%26utm_campaign%3Dsitio" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-play"/></svg>Google Play</a><a href="memoryworkshop/" data-en-href="memoryworkshop/#en"><span class="es">Privacidad</span><span class="en">Privacy</span><span class="pt">Privacidade</span><span class="fr">Confidentialité</span><span class="de">Datenschutz</span><span class="it">Privacy</span></a></div>
           </div>
         </article>
 
@@ -560,36 +571,36 @@
           </div>
         </article>
 
-        <article class="juego aparece" data-plat="android ios">
+        <article class="juego aparece" data-plat="android">
           <a class="arte" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.fourcrowns&amp;referrer=utm_source%3Dweb%26utm_medium%3Dweb%26utm_campaign%3Dsitio" tabindex="-1" aria-hidden="true" target="_blank" rel="noopener"><img class="es" src="img/juegos/fourcrowns.webp" alt="" width="1024" height="500" loading="lazy"><img class="no-es" src="img/juegos/fourcrowns-en.webp" alt="" width="1024" height="500" loading="lazy"></a>
           <div class="cuerpo">
-            <div class="etiquetas"><span class="etiqueta etiqueta--android">Android</span><span class="etiqueta etiqueta--ios">iOS</span></div>
+            <div class="etiquetas"><span class="etiqueta etiqueta--android">Android</span></div>
             <h3>Four Crowns</h3>
             <p class="genero"><span class="es">Estrategia 4X por turnos</span><span class="en">Turn-based 4X strategy</span><span class="pt">Estratégia 4X por turnos</span><span class="fr">Stratégie 4X au tour par tour</span><span class="de">Rundenbasierte 4X-Strategie</span><span class="it">Strategia 4X a turni</span></p>
             <p class="resumen"><span class="es">Cuatro reinos, una isla y una sola corona. Explora, funda ciudades, investiga y elige entre la paz y la guerra, con una mano.</span><span class="en">Four kingdoms, one island, one crown. Explore, found cities, research and choose between peace and war, one-handed.</span><span class="pt">Quatro reinos, uma ilha e uma só coroa. Explore, funde cidades, pesquise e escolha entre a paz e a guerra, com uma mão.</span><span class="fr">Quatre royaumes, une île et une seule couronne. Explore, fonde des villes, fais des recherches et choisis entre la paix et la guerre, d'une seule main.</span><span class="de">Vier Königreiche, eine Insel und nur eine Krone. Erkunde, gründe Städte, forsche und wähle zwischen Frieden und Krieg, mit einer Hand.</span><span class="it">Quattro regni, un'isola e una sola corona. Esplora, fonda città, fai ricerca e scegli tra la pace e la guerra, con una mano sola.</span></p>
-            <div class="pies"><a class="boton boton--azul boton--peq" data-tienda="android" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.fourcrowns&amp;referrer=utm_source%3Dweb%26utm_medium%3Dweb%26utm_campaign%3Dsitio" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-play"/></svg>Google Play</a><span class="boton boton--peq boton--pronto" data-tienda="ios" aria-disabled="true"><svg aria-hidden="true"><use href="#i-apple"/></svg>App Store <small><span class="es">· Próximamente</span><span class="en">· Coming soon</span><span class="pt">· Em breve</span><span class="fr">· Bientôt</span><span class="de">· Demnächst</span><span class="it">· Prossimamente</span></small></span><a href="fourcrowns/" data-en-href="fourcrowns/#en"><span class="es">Privacidad</span><span class="en">Privacy</span><span class="pt">Privacidade</span><span class="fr">Confidentialité</span><span class="de">Datenschutz</span><span class="it">Privacy</span></a></div>
+            <div class="pies"><a class="boton boton--azul boton--peq" data-tienda="android" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.fourcrowns&amp;referrer=utm_source%3Dweb%26utm_medium%3Dweb%26utm_campaign%3Dsitio" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-play"/></svg>Google Play</a><a href="fourcrowns/" data-en-href="fourcrowns/#en"><span class="es">Privacidad</span><span class="en">Privacy</span><span class="pt">Privacidade</span><span class="fr">Confidentialité</span><span class="de">Datenschutz</span><span class="it">Privacy</span></a></div>
           </div>
         </article>
 
-        <article class="juego aparece" data-plat="android ios">
+        <article class="juego aparece" data-plat="android">
           <a class="arte" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.fourcrownscartas&amp;referrer=utm_source%3Dweb%26utm_medium%3Dweb%26utm_campaign%3Dsitio" tabindex="-1" aria-hidden="true" target="_blank" rel="noopener"><img class="es" src="img/juegos/fourcrownscards.webp" alt="" width="1024" height="500" loading="lazy"><img class="no-es" src="img/juegos/fourcrownscards-en.webp" alt="" width="1024" height="500" loading="lazy"></a>
           <div class="cuerpo">
-            <div class="etiquetas"><span class="etiqueta etiqueta--android">Android</span><span class="etiqueta etiqueta--ios">iOS</span></div>
+            <div class="etiquetas"><span class="etiqueta etiqueta--android">Android</span></div>
             <h3>Four Crowns: Cards</h3>
             <p class="genero"><span class="es">Cartas y decisiones</span><span class="en">Cards &amp; decisions</span><span class="pt">Cartas e decisões</span><span class="fr">Cartes et décisions</span><span class="de">Karten und Entscheidungen</span><span class="it">Carte e decisioni</span></p>
             <p class="resumen"><span class="es">Desliza cartas, gobierna tu dinastía y une la isla de las Cuatro Coronas. Detrás de cada carta, tu reino cambia.</span><span class="en">Swipe cards, rule your dynasty and unite the island of the Four Crowns. Behind every card, your kingdom changes.</span><span class="pt">Deslize cartas, governe sua dinastia e una a ilha das Quatro Coroas. Atrás de cada carta, seu reino muda.</span><span class="fr">Fais glisser des cartes, gouverne ta dynastie et unis l'île des Quatre Couronnes. Derrière chaque carte, ton royaume change.</span><span class="de">Wische Karten, regiere deine Dynastie und vereine die Insel der Vier Kronen. Hinter jeder Karte verändert sich dein Königreich.</span><span class="it">Scorri le carte, governa la tua dinastia e unisci l'isola delle Quattro Corone. Dietro ogni carta, il tuo regno cambia.</span></p>
-            <div class="pies"><a class="boton boton--azul boton--peq" data-tienda="android" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.fourcrownscartas&amp;referrer=utm_source%3Dweb%26utm_medium%3Dweb%26utm_campaign%3Dsitio" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-play"/></svg>Google Play</a><span class="boton boton--peq boton--pronto" data-tienda="ios" aria-disabled="true"><svg aria-hidden="true"><use href="#i-apple"/></svg>App Store <small><span class="es">· Próximamente</span><span class="en">· Coming soon</span><span class="pt">· Em breve</span><span class="fr">· Bientôt</span><span class="de">· Demnächst</span><span class="it">· Prossimamente</span></small></span><a href="fourcrownscards/" data-en-href="fourcrownscards/#en"><span class="es">Privacidad</span><span class="en">Privacy</span><span class="pt">Privacidade</span><span class="fr">Confidentialité</span><span class="de">Datenschutz</span><span class="it">Privacy</span></a></div>
+            <div class="pies"><a class="boton boton--azul boton--peq" data-tienda="android" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.fourcrownscartas&amp;referrer=utm_source%3Dweb%26utm_medium%3Dweb%26utm_campaign%3Dsitio" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-play"/></svg>Google Play</a><a href="fourcrownscards/" data-en-href="fourcrownscards/#en"><span class="es">Privacidad</span><span class="en">Privacy</span><span class="pt">Privacidade</span><span class="fr">Confidentialité</span><span class="de">Datenschutz</span><span class="it">Privacy</span></a></div>
           </div>
         </article>
 
-        <article class="juego aparece" data-plat="android ios">
+        <article class="juego aparece" data-plat="android">
           <a class="arte" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.popiblocks&amp;referrer=utm_source%3Dweb%26utm_medium%3Dweb%26utm_campaign%3Dsitio" tabindex="-1" aria-hidden="true" target="_blank" rel="noopener"><img class="es" src="img/juegos/popiblocks.webp" alt="" width="1024" height="500" loading="lazy"><img class="no-es" src="img/juegos/popiblocks-en.webp" alt="" width="1024" height="500" loading="lazy"></a>
           <div class="cuerpo">
-            <div class="etiquetas"><span class="etiqueta etiqueta--android">Android</span><span class="etiqueta etiqueta--ios">iOS</span></div>
+            <div class="etiquetas"><span class="etiqueta etiqueta--android">Android</span></div>
             <h3>PopiBlocks</h3>
             <p class="genero"><span class="es">Puzle de bloques</span><span class="en">Block puzzle</span><span class="pt">Quebra-cabeça de blocos</span><span class="fr">Puzzle de blocs</span><span class="de">Block-Puzzle</span><span class="it">Puzzle a blocchi</span></p>
             <p class="resumen"><span class="es">La pila no para de subir: intercambia bloques, junta tres y encadena combos. Cien niveles en diez mundos.</span><span class="en">The stack keeps rising: swap blocks, match three and chain combos. A hundred levels across ten worlds.</span><span class="pt">A pilha não para de subir: troque blocos, junte três e encadeie combos. Cem níveis em dez mundos.</span><span class="fr">La pile ne cesse de monter : échange des blocs, aligne-en trois et enchaîne les combos. Cent niveaux dans dix mondes.</span><span class="de">Der Stapel wächst unaufhörlich: Tausche Blöcke, bilde Dreierreihen und baue Ketten. Hundert Level in zehn Welten.</span><span class="it">La pila non smette di salire: scambia blocchi, unisci tre e concatena combo. Cento livelli in dieci mondi.</span></p>
-            <div class="pies"><a class="boton boton--azul boton--peq" data-tienda="android" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.popiblocks&amp;referrer=utm_source%3Dweb%26utm_medium%3Dweb%26utm_campaign%3Dsitio" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-play"/></svg>Google Play</a><span class="boton boton--peq boton--pronto" data-tienda="ios" aria-disabled="true"><svg aria-hidden="true"><use href="#i-apple"/></svg>App Store <small><span class="es">· Próximamente</span><span class="en">· Coming soon</span><span class="pt">· Em breve</span><span class="fr">· Bientôt</span><span class="de">· Demnächst</span><span class="it">· Prossimamente</span></small></span><a href="popiblocks/" data-en-href="popiblocks/#en"><span class="es">Privacidad</span><span class="en">Privacy</span><span class="pt">Privacidade</span><span class="fr">Confidentialité</span><span class="de">Datenschutz</span><span class="it">Privacy</span></a></div>
+            <div class="pies"><a class="boton boton--azul boton--peq" data-tienda="android" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.popiblocks&amp;referrer=utm_source%3Dweb%26utm_medium%3Dweb%26utm_campaign%3Dsitio" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-play"/></svg>Google Play</a><a href="popiblocks/" data-en-href="popiblocks/#en"><span class="es">Privacidad</span><span class="en">Privacy</span><span class="pt">Privacidade</span><span class="fr">Confidentialité</span><span class="de">Datenschutz</span><span class="it">Privacy</span></a></div>
           </div>
         </article>
 
@@ -604,25 +615,25 @@
           </div>
         </article>
 
-        <article class="juego aparece" data-plat="android ios">
+        <article class="juego aparece" data-plat="android">
           <a class="arte" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.hearthfall&amp;referrer=utm_source%3Dweb%26utm_medium%3Dweb%26utm_campaign%3Dsitio" tabindex="-1" aria-hidden="true" target="_blank" rel="noopener"><img class="es" src="img/juegos/hearthfall.webp" alt="" width="1024" height="500" loading="lazy"><img class="no-es" src="img/juegos/hearthfall-en.webp" alt="" width="1024" height="500" loading="lazy"></a>
           <div class="cuerpo">
-            <div class="etiquetas"><span class="etiqueta etiqueta--android">Android</span><span class="etiqueta etiqueta--ios">iOS</span></div>
+            <div class="etiquetas"><span class="etiqueta etiqueta--android">Android</span></div>
             <h3>Hearthfall</h3>
             <p class="genero"><span class="es">Construcción de poblados</span><span class="en">Village builder</span><span class="pt">Construção de aldeias</span><span class="fr">Construction de village</span><span class="de">Dorfaufbau</span><span class="it">Costruzione di villaggi</span></p>
             <p class="resumen"><span class="es">Funda un poblado en un bosque que no perdona y aguanta cuatro años de estaciones. Cada otoño sale la Luna Roja.</span><span class="en">Found a village in an unforgiving forest and last four years of seasons. Every autumn, the Red Moon rises.</span><span class="pt">Funde uma aldeia num bosque que não perdoa e aguente quatro anos de estações. Todo outono surge a Lua Vermelha.</span><span class="fr">Fonde un village dans une forêt impitoyable et tiens quatre années de saisons. Chaque automne, la Lune Rouge se lève.</span><span class="de">Gründe ein Dorf in einem gnadenlosen Wald und überstehe vier Jahre voller Jahreszeiten. Jeden Herbst steigt der Blutmond auf.</span><span class="it">Fonda un villaggio in una foresta che non perdona e resisti a quattro anni di stagioni. Ogni autunno sorge la Luna Rossa.</span></p>
-            <div class="pies"><a class="boton boton--azul boton--peq" data-tienda="android" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.hearthfall&amp;referrer=utm_source%3Dweb%26utm_medium%3Dweb%26utm_campaign%3Dsitio" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-play"/></svg>Google Play</a><span class="boton boton--peq boton--pronto" data-tienda="ios" aria-disabled="true"><svg aria-hidden="true"><use href="#i-apple"/></svg>App Store <small><span class="es">· Próximamente</span><span class="en">· Coming soon</span><span class="pt">· Em breve</span><span class="fr">· Bientôt</span><span class="de">· Demnächst</span><span class="it">· Prossimamente</span></small></span><a href="hearthfall/" data-en-href="hearthfall/#en"><span class="es">Privacidad</span><span class="en">Privacy</span><span class="pt">Privacidade</span><span class="fr">Confidentialité</span><span class="de">Datenschutz</span><span class="it">Privacy</span></a></div>
+            <div class="pies"><a class="boton boton--azul boton--peq" data-tienda="android" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.hearthfall&amp;referrer=utm_source%3Dweb%26utm_medium%3Dweb%26utm_campaign%3Dsitio" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-play"/></svg>Google Play</a><a href="hearthfall/" data-en-href="hearthfall/#en"><span class="es">Privacidad</span><span class="en">Privacy</span><span class="pt">Privacidade</span><span class="fr">Confidentialité</span><span class="de">Datenschutz</span><span class="it">Privacy</span></a></div>
           </div>
         </article>
 
-        <article class="juego aparece" data-plat="android ios">
+        <article class="juego aparece" data-plat="android">
           <a class="arte" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.lastbonfire&amp;referrer=utm_source%3Dweb%26utm_medium%3Dweb%26utm_campaign%3Dsitio" tabindex="-1" aria-hidden="true" target="_blank" rel="noopener"><img class="es" src="img/juegos/lastbonfire.webp" alt="" width="1024" height="500" loading="lazy"><img class="no-es" src="img/juegos/lastbonfire-en.webp" alt="" width="1024" height="500" loading="lazy"></a>
           <div class="cuerpo">
-            <div class="etiquetas"><span class="etiqueta etiqueta--android">Android</span><span class="etiqueta etiqueta--ios">iOS</span></div>
+            <div class="etiquetas"><span class="etiqueta etiqueta--android">Android</span></div>
             <h3>Last Bonfire: Winter City</h3>
             <p class="genero"><span class="es">Supervivencia y ciudades</span><span class="en">Survival city builder</span><span class="pt">Sobrevivência e cidades</span><span class="fr">Survie et cités</span><span class="de">Überleben und Städtebau</span><span class="it">Sopravvivenza e città</span></p>
             <p class="resumen"><span class="es">El mundo se ha helado y solo queda una hoguera. Levanta una ciudad a su alrededor, guía a los gremios y aguanta el invierno, capítulo a capítulo.</span><span class="en">The world has frozen and only one bonfire remains. Build a city around it, lead the guilds and endure the winter, chapter by chapter.</span><span class="pt">O mundo congelou e só resta uma fogueira. Erga uma cidade ao redor dela, guie as guildas e aguente o inverno, capítulo a capítulo.</span><span class="fr">Le monde a gelé et il ne reste qu'un brasier. Bâtis une cité autour, guide les guildes et tiens bon tout l'hiver, chapitre après chapitre.</span><span class="de">Die Welt ist erfroren, nur ein Feuer brennt noch. Baue eine Stadt darum, führe die Gilden und überstehe den Winter, Kapitel für Kapitel.</span><span class="it">Il mondo è gelato e resta un solo falò. Costruisci una città intorno, guida le gilde e resisti all'inverno, capitolo dopo capitolo.</span></p>
-            <div class="pies"><a class="boton boton--azul boton--peq" data-tienda="android" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.lastbonfire&amp;referrer=utm_source%3Dweb%26utm_medium%3Dweb%26utm_campaign%3Dsitio" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-play"/></svg>Google Play</a><span class="boton boton--peq boton--pronto" data-tienda="ios" aria-disabled="true"><svg aria-hidden="true"><use href="#i-apple"/></svg>App Store <small><span class="es">· Próximamente</span><span class="en">· Coming soon</span><span class="pt">· Em breve</span><span class="fr">· Bientôt</span><span class="de">· Demnächst</span><span class="it">· Prossimamente</span></small></span><a href="lastbonfire/" data-en-href="lastbonfire/#en"><span class="es">Privacidad</span><span class="en">Privacy</span><span class="pt">Privacidade</span><span class="fr">Confidentialité</span><span class="de">Datenschutz</span><span class="it">Privacy</span></a></div>
+            <div class="pies"><a class="boton boton--azul boton--peq" data-tienda="android" href="https://play.google.com/store/apps/details?id=com.lsm.games.studio.lastbonfire&amp;referrer=utm_source%3Dweb%26utm_medium%3Dweb%26utm_campaign%3Dsitio" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-play"/></svg>Google Play</a><a href="lastbonfire/" data-en-href="lastbonfire/#en"><span class="es">Privacidad</span><span class="en">Privacy</span><span class="pt">Privacidade</span><span class="fr">Confidentialité</span><span class="de">Datenschutz</span><span class="it">Privacy</span></a></div>
           </div>
         </article>
 
@@ -668,7 +679,7 @@
     <div class="caja">
       <div class="cabeza aparece">
         <div>
-          <p class="antetitulo">Timberland · PC · Steam</p>
+          <p class="antetitulo">Timberland · PC · Mac · Steam</p>
           <h2 class="titulo" id="timberland-titulo"><span class="es">Cuando cae la noche, tu aldea tiene que estar lista</span><span class="en">When night falls, your village had better be ready</span><span class="pt">Quando a noite cai, sua aldeia precisa estar pronta</span><span class="fr">Quand la nuit tombe, ton village doit être prêt</span><span class="de">Wenn die Nacht hereinbricht, muss dein Dorf bereit sein</span><span class="it">Quando cala la notte, il tuo villaggio deve essere pronto</span></h2>
           <p class="intro">
             <span class="es">Empiezas con un puñado de aldeanos en un valle de voxels que nadie ha pisado. Aquí no se colocan edificios y aparecen solos: se reparten oficios. Lo que sale de sus manos es lo que hace posible el oficio siguiente, y así hasta que el valle es un pueblo.</span>
@@ -705,6 +716,22 @@
           <h3><span class="es">De noche sale lo de fuera</span><span class="en">Night brings company</span><span class="pt">À noite sai o que vive lá fora</span><span class="fr">La nuit, ce qui vit dehors sort</span><span class="de">Nachts kommt, was draußen lebt</span><span class="it">Di notte esce ciò che sta fuori</span></h3>
           <p><span class="es">Cuando se pone el sol aparece lo que vive más allá de la niebla. Marca puestos de guardia, pon a un soldado a patrullar y a un arquero donde cubra.</span><span class="en">When the sun goes down, whatever lives past the fog comes out. Mark guard posts, set a soldier patrolling and an archer where it counts.</span><span class="pt">Quando o sol se põe, aparece o que vive além da névoa. Marque postos de guarda, ponha um soldado para patrulhar e um arqueiro onde ele cubra.</span><span class="fr">Quand le soleil se couche, ce qui vit au-delà de la brume apparaît. Place des postes de garde, mets un soldat en patrouille et un archer là où il couvre.</span><span class="de">Wenn die Sonne untergeht, zeigt sich, was jenseits des Nebels lebt. Markiere Wachposten, schick einen Soldaten auf Patrouille und stell einen Bogenschützen dorthin, wo er deckt.</span><span class="it">Quando tramonta il sole, compare ciò che vive oltre la nebbia. Segna i posti di guardia, metti un soldato di pattuglia e un arciere dove copre.</span></p>
         </article>
+      </div>
+      <div class="cambios aparece">
+        <h3><span class="es">Desde la salida</span><span class="en">Since launch</span><span class="pt">Desde o lançamento</span><span class="fr">Depuis la sortie</span><span class="de">Seit dem Start</span><span class="it">Dall'uscita</span></h3>
+        <ul>
+          <li><span class="fecha"><span class="es">3 nov</span><span class="en">Nov 3</span><span class="pt">3 nov</span><span class="fr">3 nov.</span><span class="de">3. Nov.</span><span class="it">3 nov</span></span><span><span class="es">Los mineros con nivel ven las vetas de mineral a través de la roca.</span><span class="en">Experienced miners can see ore veins through the rock.</span><span class="pt">Mineiros com nível veem os veios de minério através da rocha.</span><span class="fr">Les mineurs expérimentés voient les filons de minerai à travers la roche.</span><span class="de">Erfahrene Bergleute sehen Erzadern durch das Gestein.</span><span class="it">I minatori esperti vedono le vene di minerale attraverso la roccia.</span></span></li>
+          <li><span class="fecha"><span class="es">5 nov</span><span class="en">Nov 5</span><span class="pt">5 nov</span><span class="fr">5 nov.</span><span class="de">5. Nov.</span><span class="it">5 nov</span></span><span><span class="es">La tierra y la arena tienen su propio cajón en el almacén, y pilas de tierra para guardarlas.</span><span class="en">Dirt and sand get their own storage drawer, plus dirt piles to keep them in.</span><span class="pt">Terra e areia ganham sua própria gaveta no armazém, e pilhas de terra para guardá-las.</span><span class="fr">La terre et le sable ont leur propre tiroir dans l'entrepôt, et des tas de terre pour les stocker.</span><span class="de">Erde und Sand haben ein eigenes Fach im Lager, dazu Erdhaufen zum Aufbewahren.</span><span class="it">Terra e sabbia hanno il loro cassetto nel magazzino, e cumuli di terra per conservarle.</span></span></li>
+          <li><span class="fecha"><span class="es">7 nov</span><span class="en">Nov 7</span><span class="pt">7 nov</span><span class="fr">7 nov.</span><span class="de">7. Nov.</span><span class="it">7 nov</span></span><span><span class="es">La ayuda de los cultivos dice cuánto tardan y cuándo se cosechan.</span><span class="en">Crop help now tells you how long they take and when to harvest.</span><span class="pt">A ajuda das plantações diz quanto tempo levam e quando colher.</span><span class="fr">L'aide des cultures indique combien de temps elles mettent et quand récolter.</span><span class="de">Die Hilfe zu den Feldfrüchten zeigt, wie lange sie brauchen und wann geerntet wird.</span><span class="it">L'aiuto delle colture dice quanto ci mettono e quando si raccolgono.</span></span></li>
+          <li><span class="fecha"><span class="es">3–9 nov</span><span class="en">Nov 3–9</span><span class="pt">3–9 nov</span><span class="fr">3–9 nov.</span><span class="de">3.–9. Nov.</span><span class="it">3–9 nov</span></span><span><span class="es">Arreglos a partir de lo que nos habéis contado: aldeanos que pasaban hambre junto a un cofre inalcanzable, constructores que acaparaban material, varios puestos de guardia a la vez, ajustes de los aldeanos que se reiniciaban y el aviso de incursión al cargar partida.</span><span class="en">Fixes based on your reports: settlers starving next to an unreachable chest, builders hoarding materials, several guard posts at once, settler settings resetting, and the raid warning when loading a save.</span><span class="pt">Correções a partir do que vocês nos contaram: aldeões passando fome ao lado de um baú inalcançável, construtores acumulando material, vários postos de guarda ao mesmo tempo, ajustes dos aldeões que se reiniciavam e o aviso de incursão ao carregar o jogo.</span><span class="fr">Corrections d'après vos retours : villageois affamés à côté d'un coffre inaccessible, bâtisseurs qui gardaient les matériaux, plusieurs postes de garde à la fois, réglages des villageois qui se réinitialisaient et l'alerte de raid au chargement d'une partie.</span><span class="de">Korrekturen nach euren Meldungen: Siedler, die neben einer unerreichbaren Truhe hungerten, Baumeister, die Material horteten, mehrere Wachposten gleichzeitig, sich zurücksetzende Siedler-Einstellungen und die Überfallwarnung beim Laden eines Spielstands.</span><span class="it">Correzioni a partire da quello che ci avete segnalato: abitanti affamati accanto a un baule irraggiungibile, costruttori che si tenevano i materiali, più posti di guardia insieme, impostazioni degli abitanti che si azzeravano e l'avviso di incursione al caricamento.</span></span></li>
+        </ul>
+        <div class="cambios-pie">
+          <p><span class="es">¿Qué más necesita tu aldea? Cuéntanoslo en Discord o en el foro de Steam: lo leemos todo.</span><span class="en">What else does your village need? Tell us on Discord or the Steam forum: we read everything.</span><span class="pt">Do que mais sua aldeia precisa? Conte para a gente no Discord ou no fórum da Steam: lemos tudo.</span><span class="fr">De quoi d'autre ton village a-t-il besoin ? Dis-le-nous sur Discord ou sur le forum Steam : on lit tout.</span><span class="de">Was braucht dein Dorf noch? Sag es uns auf Discord oder im Steam-Forum: Wir lesen alles.</span><span class="it">Di cos'altro ha bisogno il tuo villaggio? Diccelo su Discord o nel forum di Steam: leggiamo tutto.</span></p>
+          <div class="acciones">
+            <a class="boton boton--claro boton--peq" href="https://discord.gg/azFCPrtzg" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-discord"/></svg>Discord</a>
+            <a class="boton boton--claro boton--peq" href="https://steamcommunity.com/app/5224900/discussions/" target="_blank" rel="noopener"><span class="es">Foro de Steam</span><span class="en">Steam forum</span><span class="pt">Fórum da Steam</span><span class="fr">Forum Steam</span><span class="de">Steam-Forum</span><span class="it">Forum di Steam</span></a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
