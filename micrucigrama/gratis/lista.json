@@ -1,3 +1,74 @@
 {
-  "crucigramas": []
+  "crucigramas": [
+    {
+      "titulo": "Astronomía",
+      "idioma": "es",
+      "descripcion": "Planetas, estrellas y cometas",
+      "enlace": "https://lsmgamesstudio-ui.github.io/micrucigrama/abrir/#r=5A85CCC0-D724-414D-B081-303E4679A35C~dl_VRIxW8HU26X4nqQWKMIiDt7afAuni4jkONQ5Aylg",
+      "registro": "5A85CCC0-D724-414D-B081-303E4679A35C"
+    },
+    {
+      "titulo": "Astronomy",
+      "idioma": "en",
+      "descripcion": "Planets, stars and comets",
+      "enlace": "https://lsmgamesstudio-ui.github.io/micrucigrama/abrir/#r=6C53466A-9C83-45F7-AE36-F78E046E4AC0~xQOvvpeispmFEAVniZVqxGBBkytO8Tu5JXrY-TACI5I",
+      "registro": "6C53466A-9C83-45F7-AE36-F78E046E4AC0"
+    },
+    {
+      "titulo": "Sinónimos y antónimos",
+      "idioma": "es",
+      "descripcion": "Palabras parecidas y contrarias",
+      "enlace": "https://lsmgamesstudio-ui.github.io/micrucigrama/abrir/#r=072985C5-BEDF-4066-8DD3-FBBFDBC18C29~7ghi06cHaH62M_OD4mNpnms_5_PUZjORPk79Dtc8b1g",
+      "registro": "072985C5-BEDF-4066-8DD3-FBBFDBC18C29"
+    },
+    {
+      "titulo": "Synonyms and antonyms",
+      "idioma": "en",
+      "descripcion": "Similar and opposite words",
+      "enlace": "https://lsmgamesstudio-ui.github.io/micrucigrama/abrir/#r=77C16386-437E-478E-BE4F-6A1163D92A47~LpLWlGZLvRrjfw1Orh5O7-Ch6hMx-uWgTZTpi_fLZgE",
+      "registro": "77C16386-437E-478E-BE4F-6A1163D92A47"
+    },
+    {
+      "titulo": "Finanzas y economía",
+      "idioma": "es",
+      "descripcion": "Ahorro, bolsa e impuestos",
+      "enlace": "https://lsmgamesstudio-ui.github.io/micrucigrama/abrir/#r=4B23C886-677E-4AE1-A0C0-6F5B5EDDCE0F~75h9OXtWrmLm5JwgNJN3idggqN2IRjGnFokG1_KVX_U",
+      "registro": "4B23C886-677E-4AE1-A0C0-6F5B5EDDCE0F"
+    },
+    {
+      "titulo": "Finance and economics",
+      "idioma": "en",
+      "descripcion": "Savings, shares and taxes",
+      "enlace": "https://lsmgamesstudio-ui.github.io/micrucigrama/abrir/#r=6AEB5661-6915-4F09-B588-934ACAFDC526~iZagl2R7C0bWxqMudQSbRIPrpeLYDbqLt70wpeI269I",
+      "registro": "6AEB5661-6915-4F09-B588-934ACAFDC526"
+    },
+    {
+      "titulo": "Informática",
+      "idioma": "es",
+      "descripcion": "Ordenadores, programas e internet",
+      "enlace": "https://lsmgamesstudio-ui.github.io/micrucigrama/abrir/#r=DC6D9480-5880-488A-93FE-4D2260D7DE43~re_ASt0kAAqXkbeFFhcqdN23KTrYP685TKbE2g84zIg",
+      "registro": "DC6D9480-5880-488A-93FE-4D2260D7DE43"
+    },
+    {
+      "titulo": "Computers",
+      "idioma": "en",
+      "descripcion": "Computers, programs and the internet",
+      "enlace": "https://lsmgamesstudio-ui.github.io/micrucigrama/abrir/#r=B32FE2D2-47AA-4E3D-A7C6-1855CC080ED1~QXpZr2P_tGtWM0E5G8xfXgISE-H3XA-frbZl5I5ghLg",
+      "registro": "B32FE2D2-47AA-4E3D-A7C6-1855CC080ED1"
+    },
+    {
+      "titulo": "Animales",
+      "idioma": "es",
+      "descripcion": "Del perro a la ballena",
+      "enlace": "https://lsmgamesstudio-ui.github.io/micrucigrama/abrir/#r=AC26FC8E-DA80-4744-8CC3-95801A189087~3PDNkPkMRsrQ1OG5KQV2BVA48prDPiQBGVpueGaTMPA",
+      "registro": "AC26FC8E-DA80-4744-8CC3-95801A189087"
+    },
+    {
+      "titulo": "Animals",
+      "idioma": "en",
+      "descripcion": "From dogs to whales",
+      "enlace": "https://lsmgamesstudio-ui.github.io/micrucigrama/abrir/#r=24B17C7E-C6DD-42D8-AC26-2A31410D9789~MI5lVBJXBQdPamC1gp1NeUDD0mhU-hj_Lq29stIOKcI",
+      "registro": "24B17C7E-C6DD-42D8-AC26-2A31410D9789"
+    }
+  ]
 }
