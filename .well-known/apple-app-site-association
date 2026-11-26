@@ -1,0 +1,18 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": [
+          "NDX22V6A4L.com.lsm.games.studio.micrucigrama",
+          "NDX22V6A4L.com.lsm.games.studio.micrucigrama.prueba"
+        ],
+        "components": [
+          {
+            "/": "/micrucigrama/abrir/*",
+            "comment": "Códigos QR de Mi Crucigrama"
+          }
+        ]
+      }
+    ]
+  }
+}
